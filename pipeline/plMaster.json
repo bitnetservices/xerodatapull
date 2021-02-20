@@ -134,6 +134,32 @@
 					},
 					"waitOnCompletion": true
 				}
+			},
+			{
+				"name": "plRefreshVault",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "plJournals",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "plMisc",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "plRefreshVault",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
 			}
 		],
 		"annotations": []

@@ -1,5 +1,5 @@
 {
-	"name": "BankTransactions",
+	"name": "ExpenseClaims",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "BovuaFuelApi",
@@ -9,7 +9,7 @@
 		"type": "XeroObject",
 		"schema": [],
 		"typeProperties": {
-			"tableName": "\"Global\".\"Bank_Transactions\""
+			"tableName": "\"Global\".\"Expense_Claims\""
 		}
 	}
 }

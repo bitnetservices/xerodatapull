@@ -1,5 +1,5 @@
 {
-	"name": "BankTransactions",
+	"name": "ReceiptLineItemTracking",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "BovuaFuelApi",
@@ -9,7 +9,7 @@
 		"type": "XeroObject",
 		"schema": [],
 		"typeProperties": {
-			"tableName": "\"Global\".\"Bank_Transactions\""
+			"tableName": "\"Global\".\"Receipt_Line_Item_Tracking\""
 		}
 	}
 }

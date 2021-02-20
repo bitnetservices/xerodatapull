@@ -1,0 +1,16 @@
+{
+	"name": "pipeline1",
+	"properties": {
+		"variables": {
+			"scopes": {
+				"type": "String",
+				"defaultValue": "offline_access accounting.transactions openid profile email accounting.contacts accounting.settings"
+			},
+			"re_directURL": {
+				"type": "String",
+				"defaultValue": "https://developer.xero.com"
+			}
+		},
+		"annotations": []
+	}
+}

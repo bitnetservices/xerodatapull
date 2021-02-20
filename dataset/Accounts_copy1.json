@@ -1,0 +1,12 @@
+{
+	"name": "Accounts_copy1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "BovuaFuelApi",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "XeroObject",
+		"schema": []
+	}
+}

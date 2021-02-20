@@ -1,0 +1,15 @@
+{
+	"name": "Bank_Transaction_Line_Item_Tracking",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "BovuaFuelApi",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "XeroObject",
+		"schema": [],
+		"typeProperties": {
+			"tableName": "\"Global\".\"Bank_Transaction_Line_Item_Tracking\""
+		}
+	}
+}

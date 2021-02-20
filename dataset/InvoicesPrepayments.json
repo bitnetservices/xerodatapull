@@ -1,5 +1,5 @@
 {
-	"name": "Accounts_copy1",
+	"name": "InvoicesPrepayments",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "BovuaFuelApi",
@@ -9,7 +9,7 @@
 		"type": "XeroObject",
 		"schema": [],
 		"typeProperties": {
-			"tableName": "\"Global\".\"Accounts\""
+			"tableName": "\"Global\".\"Invoices_Prepayments\""
 		}
 	}
 }

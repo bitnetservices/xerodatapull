@@ -9,6 +9,14 @@
 			"re_directURL": {
 				"type": "String",
 				"defaultValue": "https://developer.xero.com"
+			},
+			"auth_url": {
+				"type": "String",
+				"defaultValue": "https://login.xero.com/identity/connect/authorize"
+			},
+			"access_token_url": {
+				"type": "String",
+				"defaultValue": "https://identity.xero.com/connect/token"
 			}
 		},
 		"annotations": []

@@ -1,0 +1,15 @@
+{
+	"name": "JournalLines",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "BovuaFuelApi",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "XeroObject",
+		"schema": [],
+		"typeProperties": {
+			"tableName": "\"Global\".\"Journal_Lines\""
+		}
+	}
+}

@@ -1,0 +1,15 @@
+{
+	"name": "Organisations",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "BovuaFuelApi",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "XeroObject",
+		"schema": [],
+		"typeProperties": {
+			"tableName": "\"Global\".\"Organisations\""
+		}
+	}
+}

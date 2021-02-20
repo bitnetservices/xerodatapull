@@ -1,0 +1,15 @@
+{
+	"name": "InvoicesCreditNotes",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "BovuaFuelApi",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "XeroObject",
+		"schema": [],
+		"typeProperties": {
+			"tableName": "\"Global\".\"Invoices_Credit_Notes\""
+		}
+	}
+}

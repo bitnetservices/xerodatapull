@@ -35,7 +35,7 @@
 				"type": "WebActivity",
 				"dependsOn": [
 					{
-						"activity": "Set Current Refresh Token_copy1",
+						"activity": "Set Refresh Token Data",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -206,7 +206,7 @@
 				}
 			},
 			{
-				"name": "Set Current Refresh Token_copy1",
+				"name": "Set Refresh Token Data",
 				"type": "SetVariable",
 				"dependsOn": [
 					{

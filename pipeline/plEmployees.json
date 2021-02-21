@@ -40,7 +40,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "sql_accounts",
+						"referenceName": "sql_Employees",
 						"type": "DatasetReference"
 					}
 				]
@@ -90,7 +90,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "sql_accounts",
+						"referenceName": "sql_ExpenseClaimPayments",
 						"type": "DatasetReference"
 					}
 				]
@@ -140,7 +140,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "sql_accounts",
+						"referenceName": "sql_ExpenseClaimReceipts",
 						"type": "DatasetReference"
 					}
 				]
@@ -190,7 +190,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "sql_accounts",
+						"referenceName": "sql_ExpenseClaims",
 						"type": "DatasetReference"
 					}
 				]

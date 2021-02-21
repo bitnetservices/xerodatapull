@@ -90,7 +90,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "sql_accounts",
+						"referenceName": "sql_AssetTypes",
 						"type": "DatasetReference"
 					}
 				]
@@ -140,7 +140,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "sql_accounts",
+						"referenceName": "sql_associations",
 						"type": "DatasetReference"
 					}
 				]
@@ -190,7 +190,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "sql_accounts",
+						"referenceName": "sql_CreditNoteLineItems",
 						"type": "DatasetReference"
 					}
 				]
@@ -233,7 +233,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "sql_accounts",
+						"referenceName": "sql_CreditNotes",
 						"type": "DatasetReference"
 					}
 				]
@@ -276,7 +276,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "sql_accounts",
+						"referenceName": "sql_Items",
 						"type": "DatasetReference"
 					}
 				]
@@ -319,7 +319,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "sql_accounts",
+						"referenceName": "sql_Organisations",
 						"type": "DatasetReference"
 					}
 				]
@@ -362,7 +362,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "sql_accounts",
+						"referenceName": "sql_Projects",
 						"type": "DatasetReference"
 					}
 				]
@@ -405,7 +405,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "sql_accounts",
+						"referenceName": "sql_Statements",
 						"type": "DatasetReference"
 					}
 				]
@@ -448,7 +448,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "sql_accounts",
+						"referenceName": "sql_Users",
 						"type": "DatasetReference"
 					}
 				]

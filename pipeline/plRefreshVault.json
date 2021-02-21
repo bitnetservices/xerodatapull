@@ -24,6 +24,10 @@
 				"typeProperties": {
 					"url": "https://xerodatakeyvault.vault.azure.net/secrets/xero-refresh-token-bouva-fuel/bbc4d1ec66d449db8a6b5713896751ca?api-version=7.0",
 					"method": "POST",
+					"body": {
+						"value": "@variables('vNew_refresh_token')",
+						"type": "Expression"
+					},
 					"authentication": {
 						"type": "MSI",
 						"resource": "https://vault.azure.net"

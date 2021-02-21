@@ -7,19 +7,7 @@
 				"type": "WebActivity",
 				"dependsOn": [
 					{
-						"activity": "Set Refresh Token",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					},
-					{
-						"activity": "Set Client Id",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					},
-					{
-						"activity": "Set Client Secret",
+						"activity": "Set New Refresh Token",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -43,9 +31,28 @@
 				}
 			},
 			{
-				"name": "Get Refresh Token",
+				"name": "Get Xero Refresh Token",
 				"type": "WebActivity",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "Set Client Id",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "Set Client Secret",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "Set Current Refresh Token",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
@@ -75,11 +82,11 @@
 				}
 			},
 			{
-				"name": "Set Refresh Token",
+				"name": "Set New Refresh Token",
 				"type": "SetVariable",
 				"dependsOn": [
 					{
-						"activity": "Get Refresh Token",
+						"activity": "Get Xero Refresh Token",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -89,7 +96,7 @@
 				"typeProperties": {
 					"variableName": "vRefresh_token",
 					"value": {
-						"value": "@activity('Get Refresh Token').output.value",
+						"value": "@activity('Get Xero Refresh Token').output.value",
 						"type": "Expression"
 					}
 				}

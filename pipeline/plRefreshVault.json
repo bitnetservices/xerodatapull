@@ -75,7 +75,7 @@
 				],
 				"userProperties": [],
 				"typeProperties": {
-					"variableName": "vRefresh_token",
+					"variableName": "vNew_refresh_token",
 					"value": {
 						"value": "@activity('Get Xero Refresh Token').output.value",
 						"type": "Expression"

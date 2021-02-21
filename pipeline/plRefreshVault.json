@@ -55,6 +55,10 @@
 					"headers": {
 						"grant_type": "refresh_token",
 						"Content-Type": "application/json"
+					},
+					"body": {
+						"value": "@variables('vRefresh_token_data')",
+						"type": "Expression"
 					}
 				}
 			},

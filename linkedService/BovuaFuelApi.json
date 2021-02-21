@@ -14,7 +14,7 @@
 						"type": "LinkedServiceReference"
 					},
 					"secretName": "xero-client-id-bouva-fuel",
-					"secretVersion": "api.xero.com"
+					"secretVersion": ""
 				},
 				"privateKey": {
 					"type": "AzureKeyVaultSecret",

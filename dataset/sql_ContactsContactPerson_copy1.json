@@ -1,0 +1,19 @@
+{
+	"name": "sql_ContactsContactPerson_copy1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "sqlXero",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "SQL"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "ContactsContactPerson"
+		}
+	}
+}

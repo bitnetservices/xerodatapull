@@ -47,7 +47,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "sql_accounts",
+						"referenceName": "sql_OverpaymentAllocations",
 						"type": "DatasetReference"
 					}
 				]
@@ -90,7 +90,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "sql_accounts",
+						"referenceName": "sql_Overpayments",
 						"type": "DatasetReference"
 					}
 				]
@@ -183,7 +183,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "sql_accounts",
+						"referenceName": "sql_Prepayments",
 						"type": "DatasetReference"
 					}
 				]
@@ -233,7 +233,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "sql_accounts",
+						"referenceName": "sql_PurchaseOrderLineItems",
 						"type": "DatasetReference"
 					}
 				]
@@ -276,7 +276,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "sql_accounts",
+						"referenceName": "sql_PurchaseOrders",
 						"type": "DatasetReference"
 					}
 				]
@@ -326,7 +326,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "sql_accounts",
+						"referenceName": "sql_ReceiptLineItems",
 						"type": "DatasetReference"
 					}
 				]
@@ -369,7 +369,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "sql_accounts",
+						"referenceName": "sql_Receipts",
 						"type": "DatasetReference"
 					}
 				]
@@ -412,7 +412,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "sql_accounts",
+						"referenceName": "sql_TaxRates",
 						"type": "DatasetReference"
 					}
 				]
@@ -462,7 +462,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "sql_accounts",
+						"referenceName": "sql_TaxRateTaxComponents",
 						"type": "DatasetReference"
 					}
 				]

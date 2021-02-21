@@ -107,7 +107,13 @@
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "Contacts",
+						"activity": "ContactsContactPerson",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "ContactsPhones",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -200,7 +206,7 @@
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "Contacts",
+						"activity": "ContactAddresses",
 						"dependencyConditions": [
 							"Succeeded"
 						]

@@ -31,7 +31,7 @@
 				}
 			},
 			{
-				"name": "Web1",
+				"name": "Get Refresh Token",
 				"type": "WebActivity",
 				"dependsOn": [],
 				"policy": {
@@ -47,7 +47,18 @@
 					"method": "POST",
 					"headers": {
 						"grant_type": "refresh_token",
-						"client_secret": ""
+						"refresh_token": {
+							"value": "@variables('vRefresh_token')",
+							"type": "Expression"
+						},
+						"client_id": {
+							"value": "@variables('vClient_id')",
+							"type": "Expression"
+						},
+						"client_secret": {
+							"value": "@variables('vClient_secret')",
+							"type": "Expression"
+						}
 					}
 				}
 			},
@@ -56,13 +67,20 @@
 				"type": "SetVariable",
 				"dependsOn": [
 					{
-						"activity": "Web1",
+						"activity": "Get Refresh Token",
 						"dependencyConditions": [
 							"Succeeded"
 						]
 					}
 				],
-				"userProperties": []
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "vRefresh_token",
+					"value": {
+						"value": "@activity('Get Refresh Token').output.value",
+						"type": "Expression"
+					}
+				}
 			}
 		],
 		"variables": {

@@ -47,7 +47,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "sql_accounts",
+						"referenceName": "sql_InvoiceLineItems",
 						"type": "DatasetReference"
 					}
 				]
@@ -90,7 +90,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "sql_accounts",
+						"referenceName": "sql_Invoices",
 						"type": "DatasetReference"
 					}
 				]
@@ -140,7 +140,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "sql_accounts",
+						"referenceName": "sql_InvoicesCreditNotes",
 						"type": "DatasetReference"
 					}
 				]
@@ -190,7 +190,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "sql_accounts",
+						"referenceName": "sql_InvoicesOverpayments",
 						"type": "DatasetReference"
 					}
 				]
@@ -240,7 +240,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "sql_accounts",
+						"referenceName": "sql_InvoicesPrepayments",
 						"type": "DatasetReference"
 					}
 				]
@@ -290,7 +290,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "sql_accounts",
+						"referenceName": "sql_RepeatingInvoiceLineItems",
 						"type": "DatasetReference"
 					}
 				]
@@ -333,7 +333,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "sql_accounts",
+						"referenceName": "sql_RepeatingInvoices",
 						"type": "DatasetReference"
 					}
 				]

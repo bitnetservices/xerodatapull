@@ -5,7 +5,14 @@
 			{
 				"name": "plAccounts",
 				"type": "ExecutePipeline",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "plMain",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"userProperties": [],
 				"typeProperties": {
 					"pipeline": {
@@ -156,6 +163,19 @@
 				"typeProperties": {
 					"pipeline": {
 						"referenceName": "plRefreshVault",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "plMain",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "plMain",
 						"type": "PipelineReference"
 					},
 					"waitOnCompletion": true

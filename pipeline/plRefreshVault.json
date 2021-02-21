@@ -98,6 +98,23 @@
 					"url": "https://xerodatakeyvault.vault.azure.net/secrets/xero-client-id-bouva-fuel/e7e90078e1814ba2a36985f4b9fdf20c?api_version=7.0",
 					"method": "GET"
 				}
+			},
+			{
+				"name": "Get Client Secret",
+				"type": "WebActivity",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://xerodatakeyvault.vault.azure.net/secrets/xero-secret-bouva-fuel/d4de9cc59dfe41c3a5a455f2daccfd25?api_version=7.0",
+					"method": "GET"
+				}
 			}
 		],
 		"variables": {

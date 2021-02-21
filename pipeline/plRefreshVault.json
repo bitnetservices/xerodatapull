@@ -7,7 +7,19 @@
 				"type": "WebActivity",
 				"dependsOn": [
 					{
-						"activity": "Set variable1",
+						"activity": "Set Refresh Token",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "Set Client Id",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "Set Client Secret",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -63,7 +75,7 @@
 				}
 			},
 			{
-				"name": "Set variable1",
+				"name": "Set Refresh Token",
 				"type": "SetVariable",
 				"dependsOn": [
 					{
@@ -114,6 +126,46 @@
 				"typeProperties": {
 					"url": "https://xerodatakeyvault.vault.azure.net/secrets/xero-secret-bouva-fuel/d4de9cc59dfe41c3a5a455f2daccfd25?api_version=7.0",
 					"method": "GET"
+				}
+			},
+			{
+				"name": "Set Client Secret",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Get Client Secret",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "vRefresh_token",
+					"value": {
+						"value": "@activity('Get Client Secret').output.value",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Set Client Id",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Get Client Id",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "vRefresh_token",
+					"value": {
+						"value": "@activity('Get Client Id').output.value",
+						"type": "Expression"
+					}
 				}
 			}
 		],

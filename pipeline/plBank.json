@@ -3,56 +3,6 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "BankFeedConnections",
-				"type": "Copy",
-				"dependsOn": [
-					{
-						"activity": "BankTransactions",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"policy": {
-					"timeout": "7.00:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"source": {
-						"type": "XeroSource"
-					},
-					"sink": {
-						"type": "AzureSqlSink",
-						"tableOption": "autoCreate"
-					},
-					"enableStaging": false,
-					"translator": {
-						"type": "TabularTranslator",
-						"typeConversion": true,
-						"typeConversionSettings": {
-							"allowDataTruncation": true,
-							"treatBooleanAsNumber": false
-						}
-					}
-				},
-				"inputs": [
-					{
-						"referenceName": "BankFeedConnections",
-						"type": "DatasetReference"
-					}
-				],
-				"outputs": [
-					{
-						"referenceName": "sql_BankFeedConnections",
-						"type": "DatasetReference"
-					}
-				]
-			},
-			{
 				"name": "BankTransactionsLineItems",
 				"type": "Copy",
 				"dependsOn": [

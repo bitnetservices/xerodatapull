@@ -107,7 +107,7 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"url": "https://xerodatakeyvault.vault.azure.net/secrets/xero-client-id-bouva-fuel/e7e90078e1814ba2a36985f4b9fdf20c?api_version=7.0",
+					"url": "https://xerodatakeyvault.vault.azure.net/secrets/xero-client-id-bouva-fuel/e7e90078e1814ba2a36985f4b9fdf20c?api-version=7.0",
 					"method": "GET",
 					"authentication": {
 						"type": "MSI",
@@ -128,7 +128,7 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"url": "https://xerodatakeyvault.vault.azure.net/secrets/xero-secret-bouva-fuel/d4de9cc59dfe41c3a5a455f2daccfd25?api_version=7.0",
+					"url": "https://xerodatakeyvault.vault.azure.net/secrets/xero-secret-bouva-fuel/d4de9cc59dfe41c3a5a455f2daccfd25?api-version=7.0",
 					"method": "GET",
 					"authentication": {
 						"type": "MSI",
@@ -189,7 +189,7 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"url": "https://xerodatakeyvault.vault.azure.net/secrets/xero-client-id-bouva-fuel/e7e90078e1814ba2a36985f4b9fdf20c?api_version=7.0",
+					"url": "https://xerodatakeyvault.vault.azure.net/secrets/xero-client-id-bouva-fuel/e7e90078e1814ba2a36985f4b9fdf20c?api-version=7.0",
 					"method": "GET",
 					"authentication": {
 						"type": "MSI",

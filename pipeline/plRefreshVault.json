@@ -66,7 +66,16 @@
 			}
 		],
 		"variables": {
-			"new_refresh_token": {
+			"vNew_refresh_token": {
+				"type": "String"
+			},
+			"vRefresh_token": {
+				"type": "String"
+			},
+			"vClient_id": {
+				"type": "String"
+			},
+			"vClient_secret": {
 				"type": "String"
 			}
 		},

@@ -35,19 +35,7 @@
 				"type": "WebActivity",
 				"dependsOn": [
 					{
-						"activity": "Set Client Id",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					},
-					{
-						"activity": "Set Client Secret",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					},
-					{
-						"activity": "Set Current Refresh Token",
+						"activity": "Set Current Refresh Token_copy1",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -216,6 +204,38 @@
 						"type": "Expression"
 					}
 				}
+			},
+			{
+				"name": "Set Current Refresh Token_copy1",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Set Client Secret",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "Set Current Refresh Token",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "Set Client Id",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "vRefresh_token",
+					"value": {
+						"value": "@activity('Read Refresh Token').output.value",
+						"type": "Expression"
+					}
+				}
 			}
 		],
 		"variables": {
@@ -229,6 +249,9 @@
 				"type": "String"
 			},
 			"vClient_secret": {
+				"type": "String"
+			},
+			"vRefresh_token_data": {
 				"type": "String"
 			}
 		},

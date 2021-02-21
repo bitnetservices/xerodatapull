@@ -66,18 +66,11 @@
 					"method": "POST",
 					"headers": {
 						"grant_type": "refresh_token",
-						"refresh_token": {
-							"value": "@variables('vRefresh_token')",
-							"type": "Expression"
-						},
-						"client_id": {
-							"value": "@variables('vClient_id')",
-							"type": "Expression"
-						},
-						"client_secret": {
-							"value": "@variables('vClient_secret')",
-							"type": "Expression"
-						}
+						"Content-Type": "application/json"
+					},
+					"body": {
+						"value": "\"{\n\"grant_type\": \"refresh_token\",\n\"refresh_token\": @variables('vRefresh_token')\n\"client_id\": @variables('vClient_id')\n\"client_secret\": @variables('vClient_secret')\n}\"",
+						"type": "Expression"
 					}
 				}
 			},

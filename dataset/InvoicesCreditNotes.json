@@ -5,6 +5,9 @@
 			"referenceName": "BovuaFuelApi",
 			"type": "LinkedServiceReference"
 		},
+		"folder": {
+			"name": "Xero"
+		},
 		"annotations": [],
 		"type": "XeroObject",
 		"schema": [],

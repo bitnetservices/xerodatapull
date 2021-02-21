@@ -47,7 +47,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "sql_accounts",
+						"referenceName": "sql_JournalLines",
 						"type": "DatasetReference"
 					}
 				]
@@ -90,7 +90,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "sql_accounts",
+						"referenceName": "sql_Journal",
 						"type": "DatasetReference"
 					}
 				]
@@ -140,7 +140,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "sql_accounts",
+						"referenceName": "sql_ManualJournalLines",
 						"type": "DatasetReference"
 					}
 				]
@@ -183,7 +183,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "sql_accounts",
+						"referenceName": "sql_ManualJournal",
 						"type": "DatasetReference"
 					}
 				]

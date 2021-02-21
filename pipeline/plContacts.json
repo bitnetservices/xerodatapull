@@ -47,7 +47,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "sql_accounts",
+						"referenceName": "sql_ContactAddresses",
 						"type": "DatasetReference"
 					}
 				]
@@ -97,7 +97,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "sql_accounts",
+						"referenceName": "sql_ContactGroupContacts",
 						"type": "DatasetReference"
 					}
 				]
@@ -147,7 +147,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "sql_accounts",
+						"referenceName": "sql_ContactGroups",
 						"type": "DatasetReference"
 					}
 				]
@@ -190,7 +190,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "sql_accounts",
+						"referenceName": "sql_Contacts",
 						"type": "DatasetReference"
 					}
 				]
@@ -240,7 +240,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "sql_accounts",
+						"referenceName": "sql_ContactsContactPerson",
 						"type": "DatasetReference"
 					}
 				]
@@ -290,7 +290,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "sql_accounts",
+						"referenceName": "sql_ContactsPhones",
 						"type": "DatasetReference"
 					}
 				]

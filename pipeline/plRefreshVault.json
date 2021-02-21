@@ -137,7 +137,7 @@
 				],
 				"userProperties": [],
 				"typeProperties": {
-					"variableName": "vRefresh_token",
+					"variableName": "vClient_secret",
 					"value": {
 						"value": "@activity('Read Client Secret').output.value",
 						"type": "Expression"
@@ -157,7 +157,7 @@
 				],
 				"userProperties": [],
 				"typeProperties": {
-					"variableName": "vRefresh_token",
+					"variableName": "vClient_id",
 					"value": {
 						"value": "@activity('Read Client Id').output.value",
 						"type": "Expression"

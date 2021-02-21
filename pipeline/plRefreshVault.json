@@ -230,9 +230,9 @@
 				],
 				"userProperties": [],
 				"typeProperties": {
-					"variableName": "vRefresh_token",
+					"variableName": "vRefresh_token_data",
 					"value": {
-						"value": "@\"{\n\"grant_type\": \"refresh_token\",\n\"refresh_token\": variables('vRefresh_token')\n\"client_id\": variables('vClient_id')\n\"client_secret\": variables('vClient_secret')\n}\"",
+						"value": "{\n\"grant_type\": \"refresh_token\",\n\"refresh_token\": \"@{variables('vRefresh_token')}\",\n\"client_id\": \"@{variables('vClient_id')}\",\n\"client_secret\": \"@{variables('vClient_secret')}\"\n}",
 						"type": "Expression"
 					}
 				}

@@ -140,7 +140,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "sql_accounts",
+						"referenceName": "sql_PrepaymentLineItems",
 						"type": "DatasetReference"
 					}
 				]

@@ -14,7 +14,7 @@
 						"type": "LinkedServiceReference"
 					},
 					"secretName": "xero-client-id-bouva-fuel",
-					"secretVersion": ""
+					"secretVersion": "92593a4487404f039c81f43ed71e9fa3"
 				},
 				"privateKey": {
 					"type": "AzureKeyVaultSecret",
@@ -22,7 +22,8 @@
 						"referenceName": "XeroDataAKV",
 						"type": "LinkedServiceReference"
 					},
-					"secretName": "xero-secret-bouva-fuel"
+					"secretName": "xero-secret-bouva-fuel",
+					"secretVersion": "117888c72ad24b3cb230c40233a638ef"
 				},
 				"useEncryptedEndpoints": true,
 				"tenantId": "a9aa610c-5c24-40e4-8653-76e1f732c593",
@@ -32,7 +33,8 @@
 						"referenceName": "XeroDataAKV",
 						"type": "LinkedServiceReference"
 					},
-					"secretName": "xero-refresh-token-bouva-fuel"
+					"secretName": "xero-refresh-token-bouva-fuel",
+					"secretVersion": "70b5203773b74270a0ca04530d6fc5b6"
 				}
 			}
 		}

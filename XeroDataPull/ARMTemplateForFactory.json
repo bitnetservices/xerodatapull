@@ -117,7 +117,7 @@
 						],
 						"outputs": [
 							{
-								"referenceName": "sql_accounts",
+								"referenceName": "sql_AssetTypes",
 								"type": "DatasetReference",
 								"parameters": {}
 							}
@@ -169,7 +169,7 @@
 						],
 						"outputs": [
 							{
-								"referenceName": "sql_accounts",
+								"referenceName": "sql_associations",
 								"type": "DatasetReference",
 								"parameters": {}
 							}
@@ -221,7 +221,7 @@
 						],
 						"outputs": [
 							{
-								"referenceName": "sql_accounts",
+								"referenceName": "sql_CreditNoteLineItems",
 								"type": "DatasetReference",
 								"parameters": {}
 							}
@@ -266,232 +266,7 @@
 						],
 						"outputs": [
 							{
-								"referenceName": "sql_accounts",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					},
-					{
-						"name": "Items",
-						"type": "Copy",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "XeroSource"
-							},
-							"sink": {
-								"type": "AzureSqlSink",
-								"tableOption": "autoCreate"
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"typeConversion": true,
-								"typeConversionSettings": {
-									"allowDataTruncation": true,
-									"treatBooleanAsNumber": false
-								}
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "Items",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "sql_accounts",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					},
-					{
-						"name": "Organisations",
-						"type": "Copy",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "XeroSource"
-							},
-							"sink": {
-								"type": "AzureSqlSink",
-								"tableOption": "autoCreate"
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"typeConversion": true,
-								"typeConversionSettings": {
-									"allowDataTruncation": true,
-									"treatBooleanAsNumber": false
-								}
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "Organisations",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "sql_accounts",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					},
-					{
-						"name": "Projects",
-						"type": "Copy",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "XeroSource"
-							},
-							"sink": {
-								"type": "AzureSqlSink",
-								"tableOption": "autoCreate"
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"typeConversion": true,
-								"typeConversionSettings": {
-									"allowDataTruncation": true,
-									"treatBooleanAsNumber": false
-								}
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "Projects",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "sql_accounts",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					},
-					{
-						"name": "Statements",
-						"type": "Copy",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "XeroSource"
-							},
-							"sink": {
-								"type": "AzureSqlSink",
-								"tableOption": "autoCreate"
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"typeConversion": true,
-								"typeConversionSettings": {
-									"allowDataTruncation": true,
-									"treatBooleanAsNumber": false
-								}
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "Statements",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "sql_accounts",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					},
-					{
-						"name": "Users",
-						"type": "Copy",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "XeroSource"
-							},
-							"sink": {
-								"type": "AzureSqlSink",
-								"tableOption": "autoCreate"
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"typeConversion": true,
-								"typeConversionSettings": {
-									"allowDataTruncation": true,
-									"treatBooleanAsNumber": false
-								}
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "Users",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "sql_accounts",
+								"referenceName": "sql_CreditNotes",
 								"type": "DatasetReference",
 								"parameters": {}
 							}
@@ -522,14 +297,13 @@
 				"[concat(variables('factoryId'), '/datasets/Accounts')]",
 				"[concat(variables('factoryId'), '/datasets/sql_accounts')]",
 				"[concat(variables('factoryId'), '/datasets/AssetTypes')]",
+				"[concat(variables('factoryId'), '/datasets/sql_AssetTypes')]",
 				"[concat(variables('factoryId'), '/datasets/Associations')]",
+				"[concat(variables('factoryId'), '/datasets/sql_associations')]",
 				"[concat(variables('factoryId'), '/datasets/CreditNoteLineItems')]",
+				"[concat(variables('factoryId'), '/datasets/sql_CreditNoteLineItems')]",
 				"[concat(variables('factoryId'), '/datasets/CreditNotes')]",
-				"[concat(variables('factoryId'), '/datasets/Items')]",
-				"[concat(variables('factoryId'), '/datasets/Organisations')]",
-				"[concat(variables('factoryId'), '/datasets/Projects')]",
-				"[concat(variables('factoryId'), '/datasets/Statements')]",
-				"[concat(variables('factoryId'), '/datasets/Users')]"
+				"[concat(variables('factoryId'), '/datasets/sql_CreditNotes')]"
 			]
 		},
 		{
@@ -538,58 +312,6 @@
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"activities": [
-					{
-						"name": "BankFeedConnections",
-						"type": "Copy",
-						"dependsOn": [
-							{
-								"activity": "BankTransactions",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "XeroSource"
-							},
-							"sink": {
-								"type": "AzureSqlSink",
-								"tableOption": "autoCreate"
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"typeConversion": true,
-								"typeConversionSettings": {
-									"allowDataTruncation": true,
-									"treatBooleanAsNumber": false
-								}
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "BankFeedConnections",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "sql_accounts",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					},
 					{
 						"name": "BankTransactionsLineItems",
 						"type": "Copy",
@@ -636,7 +358,7 @@
 						],
 						"outputs": [
 							{
-								"referenceName": "sql_accounts",
+								"referenceName": "sql_BankTransactionLineItems",
 								"type": "DatasetReference",
 								"parameters": {}
 							}
@@ -681,7 +403,7 @@
 						],
 						"outputs": [
 							{
-								"referenceName": "sql_accounts",
+								"referenceName": "sql_BankTransactions",
 								"type": "DatasetReference",
 								"parameters": {}
 							}
@@ -733,7 +455,7 @@
 						],
 						"outputs": [
 							{
-								"referenceName": "sql_accounts",
+								"referenceName": "sql_BankTransfers",
 								"type": "DatasetReference",
 								"parameters": {}
 							}
@@ -743,11 +465,12 @@
 				"annotations": []
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/BankFeedConnections')]",
-				"[concat(variables('factoryId'), '/datasets/sql_accounts')]",
 				"[concat(variables('factoryId'), '/datasets/BankTransactionLineItems')]",
+				"[concat(variables('factoryId'), '/datasets/sql_BankTransactionLineItems')]",
 				"[concat(variables('factoryId'), '/datasets/BankTransactions')]",
-				"[concat(variables('factoryId'), '/datasets/BankTransfers')]"
+				"[concat(variables('factoryId'), '/datasets/sql_BankTransactions')]",
+				"[concat(variables('factoryId'), '/datasets/BankTransfers')]",
+				"[concat(variables('factoryId'), '/datasets/sql_BankTransfers')]"
 			]
 		},
 		{
@@ -802,7 +525,7 @@
 						],
 						"outputs": [
 							{
-								"referenceName": "sql_accounts",
+								"referenceName": "sql_ContactAddresses",
 								"type": "DatasetReference",
 								"parameters": {}
 							}
@@ -854,7 +577,7 @@
 						],
 						"outputs": [
 							{
-								"referenceName": "sql_accounts",
+								"referenceName": "sql_ContactGroupContacts",
 								"type": "DatasetReference",
 								"parameters": {}
 							}
@@ -865,7 +588,13 @@
 						"type": "Copy",
 						"dependsOn": [
 							{
-								"activity": "Contacts",
+								"activity": "ContactsContactPerson",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							},
+							{
+								"activity": "ContactsPhones",
 								"dependencyConditions": [
 									"Succeeded"
 								]
@@ -906,7 +635,7 @@
 						],
 						"outputs": [
 							{
-								"referenceName": "sql_accounts",
+								"referenceName": "sql_ContactGroups",
 								"type": "DatasetReference",
 								"parameters": {}
 							}
@@ -951,7 +680,7 @@
 						],
 						"outputs": [
 							{
-								"referenceName": "sql_accounts",
+								"referenceName": "sql_Contacts",
 								"type": "DatasetReference",
 								"parameters": {}
 							}
@@ -962,7 +691,7 @@
 						"type": "Copy",
 						"dependsOn": [
 							{
-								"activity": "Contacts",
+								"activity": "ContactAddresses",
 								"dependencyConditions": [
 									"Succeeded"
 								]
@@ -1003,7 +732,7 @@
 						],
 						"outputs": [
 							{
-								"referenceName": "sql_accounts",
+								"referenceName": "sql_ContactsContactPerson",
 								"type": "DatasetReference",
 								"parameters": {}
 							}
@@ -1055,7 +784,7 @@
 						],
 						"outputs": [
 							{
-								"referenceName": "sql_accounts",
+								"referenceName": "sql_ContactsPhones",
 								"type": "DatasetReference",
 								"parameters": {}
 							}
@@ -1066,12 +795,17 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/ContactAddresses')]",
-				"[concat(variables('factoryId'), '/datasets/sql_accounts')]",
+				"[concat(variables('factoryId'), '/datasets/sql_ContactAddresses')]",
 				"[concat(variables('factoryId'), '/datasets/ContactGroupContacts')]",
+				"[concat(variables('factoryId'), '/datasets/sql_ContactGroupContacts')]",
 				"[concat(variables('factoryId'), '/datasets/ContactGroups')]",
+				"[concat(variables('factoryId'), '/datasets/sql_ContactGroups')]",
 				"[concat(variables('factoryId'), '/datasets/Contacts')]",
+				"[concat(variables('factoryId'), '/datasets/sql_Contacts')]",
 				"[concat(variables('factoryId'), '/datasets/ContactsContactPerson')]",
-				"[concat(variables('factoryId'), '/datasets/ContactsPhones')]"
+				"[concat(variables('factoryId'), '/datasets/sql_ContactsContactPerson')]",
+				"[concat(variables('factoryId'), '/datasets/ContactsPhones')]",
+				"[concat(variables('factoryId'), '/datasets/sql_ContactsPhones')]"
 			]
 		},
 		{
@@ -1119,7 +853,7 @@
 						],
 						"outputs": [
 							{
-								"referenceName": "sql_accounts",
+								"referenceName": "sql_Employees",
 								"type": "DatasetReference",
 								"parameters": {}
 							}
@@ -1171,7 +905,7 @@
 						],
 						"outputs": [
 							{
-								"referenceName": "sql_accounts",
+								"referenceName": "sql_ExpenseClaimPayments",
 								"type": "DatasetReference",
 								"parameters": {}
 							}
@@ -1223,7 +957,7 @@
 						],
 						"outputs": [
 							{
-								"referenceName": "sql_accounts",
+								"referenceName": "sql_ExpenseClaimReceipts",
 								"type": "DatasetReference",
 								"parameters": {}
 							}
@@ -1275,7 +1009,7 @@
 						],
 						"outputs": [
 							{
-								"referenceName": "sql_accounts",
+								"referenceName": "sql_ExpenseClaims",
 								"type": "DatasetReference",
 								"parameters": {}
 							}
@@ -1286,10 +1020,13 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/Employees')]",
-				"[concat(variables('factoryId'), '/datasets/sql_accounts')]",
+				"[concat(variables('factoryId'), '/datasets/sql_Employees')]",
 				"[concat(variables('factoryId'), '/datasets/ExpenseClaimPayments')]",
+				"[concat(variables('factoryId'), '/datasets/sql_ExpenseClaimPayments')]",
 				"[concat(variables('factoryId'), '/datasets/ExpenseClaimReceipts')]",
-				"[concat(variables('factoryId'), '/datasets/ExpenseClaims')]"
+				"[concat(variables('factoryId'), '/datasets/sql_ExpenseClaimReceipts')]",
+				"[concat(variables('factoryId'), '/datasets/ExpenseClaims')]",
+				"[concat(variables('factoryId'), '/datasets/sql_ExpenseClaims')]"
 			]
 		},
 		{
@@ -1344,7 +1081,7 @@
 						],
 						"outputs": [
 							{
-								"referenceName": "sql_accounts",
+								"referenceName": "sql_InvoiceLineItems",
 								"type": "DatasetReference",
 								"parameters": {}
 							}
@@ -1389,7 +1126,7 @@
 						],
 						"outputs": [
 							{
-								"referenceName": "sql_accounts",
+								"referenceName": "sql_Invoices",
 								"type": "DatasetReference",
 								"parameters": {}
 							}
@@ -1441,7 +1178,7 @@
 						],
 						"outputs": [
 							{
-								"referenceName": "sql_accounts",
+								"referenceName": "sql_InvoicesCreditNotes",
 								"type": "DatasetReference",
 								"parameters": {}
 							}
@@ -1493,7 +1230,7 @@
 						],
 						"outputs": [
 							{
-								"referenceName": "sql_accounts",
+								"referenceName": "sql_InvoicesOverpayments",
 								"type": "DatasetReference",
 								"parameters": {}
 							}
@@ -1545,7 +1282,7 @@
 						],
 						"outputs": [
 							{
-								"referenceName": "sql_accounts",
+								"referenceName": "sql_InvoicesPrepayments",
 								"type": "DatasetReference",
 								"parameters": {}
 							}
@@ -1597,7 +1334,7 @@
 						],
 						"outputs": [
 							{
-								"referenceName": "sql_accounts",
+								"referenceName": "sql_RepeatingInvoiceLineItems",
 								"type": "DatasetReference",
 								"parameters": {}
 							}
@@ -1642,7 +1379,7 @@
 						],
 						"outputs": [
 							{
-								"referenceName": "sql_accounts",
+								"referenceName": "sql_RepeatingInvoices",
 								"type": "DatasetReference",
 								"parameters": {}
 							}
@@ -1671,13 +1408,19 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/InvoiceLineItems')]",
-				"[concat(variables('factoryId'), '/datasets/sql_accounts')]",
+				"[concat(variables('factoryId'), '/datasets/sql_InvoiceLineItems')]",
 				"[concat(variables('factoryId'), '/datasets/Invoices')]",
+				"[concat(variables('factoryId'), '/datasets/sql_Invoices')]",
 				"[concat(variables('factoryId'), '/datasets/InvoicesCreditNotes')]",
+				"[concat(variables('factoryId'), '/datasets/sql_InvoicesCreditNotes')]",
 				"[concat(variables('factoryId'), '/datasets/InvoicesOverpayments')]",
+				"[concat(variables('factoryId'), '/datasets/sql_InvoicesOverpayments')]",
 				"[concat(variables('factoryId'), '/datasets/InvoicesPrepayments')]",
+				"[concat(variables('factoryId'), '/datasets/sql_InvoicesPrepayments')]",
 				"[concat(variables('factoryId'), '/datasets/RepeatingInvoiceLineItems')]",
-				"[concat(variables('factoryId'), '/datasets/RepeatingInvoices')]"
+				"[concat(variables('factoryId'), '/datasets/sql_RepeatingInvoiceLineItems')]",
+				"[concat(variables('factoryId'), '/datasets/RepeatingInvoices')]",
+				"[concat(variables('factoryId'), '/datasets/sql_RepeatingInvoices')]"
 			]
 		},
 		{
@@ -1686,103 +1429,6 @@
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"activities": [
-					{
-						"name": "JournalLines",
-						"type": "Copy",
-						"dependsOn": [
-							{
-								"activity": "Journals",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "XeroSource"
-							},
-							"sink": {
-								"type": "AzureSqlSink",
-								"tableOption": "autoCreate"
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"typeConversion": true,
-								"typeConversionSettings": {
-									"allowDataTruncation": true,
-									"treatBooleanAsNumber": false
-								}
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "JournalLines",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "sql_accounts",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					},
-					{
-						"name": "Journals",
-						"type": "Copy",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "XeroSource"
-							},
-							"sink": {
-								"type": "AzureSqlSink",
-								"tableOption": "autoCreate"
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"typeConversion": true,
-								"typeConversionSettings": {
-									"allowDataTruncation": true,
-									"treatBooleanAsNumber": false
-								}
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "Journals",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "sql_accounts",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					},
 					{
 						"name": "ManualJournalLines",
 						"type": "Copy",
@@ -1829,7 +1475,7 @@
 						],
 						"outputs": [
 							{
-								"referenceName": "sql_accounts",
+								"referenceName": "sql_ManualJournalLines",
 								"type": "DatasetReference",
 								"parameters": {}
 							}
@@ -1874,7 +1520,7 @@
 						],
 						"outputs": [
 							{
-								"referenceName": "sql_accounts",
+								"referenceName": "sql_ManualJournal",
 								"type": "DatasetReference",
 								"parameters": {}
 							}
@@ -1902,11 +1548,177 @@
 				"annotations": []
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/JournalLines')]",
-				"[concat(variables('factoryId'), '/datasets/sql_accounts')]",
-				"[concat(variables('factoryId'), '/datasets/Journals')]",
 				"[concat(variables('factoryId'), '/datasets/ManualJournalLines')]",
-				"[concat(variables('factoryId'), '/datasets/ManualJournals')]"
+				"[concat(variables('factoryId'), '/datasets/sql_ManualJournalLines')]",
+				"[concat(variables('factoryId'), '/datasets/ManualJournals')]",
+				"[concat(variables('factoryId'), '/datasets/sql_ManualJournal')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/plMain')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Items",
+						"type": "Copy",
+						"dependsOn": [
+							{
+								"activity": "Organisations",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "XeroSource"
+							},
+							"sink": {
+								"type": "AzureSqlSink",
+								"tableOption": "autoCreate"
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "Items",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "sql_Items",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					},
+					{
+						"name": "Organisations",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "XeroSource"
+							},
+							"sink": {
+								"type": "AzureSqlSink",
+								"tableOption": "autoCreate"
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "Organisations",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "sql_Organisations",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					},
+					{
+						"name": "Users",
+						"type": "Copy",
+						"dependsOn": [
+							{
+								"activity": "Items",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "XeroSource"
+							},
+							"sink": {
+								"type": "AzureSqlSink",
+								"tableOption": "autoCreate"
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "Users",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "sql_Users",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/Items')]",
+				"[concat(variables('factoryId'), '/datasets/sql_Items')]",
+				"[concat(variables('factoryId'), '/datasets/Organisations')]",
+				"[concat(variables('factoryId'), '/datasets/sql_Organisations')]",
+				"[concat(variables('factoryId'), '/datasets/Users')]",
+				"[concat(variables('factoryId'), '/datasets/sql_Users')]"
 			]
 		},
 		{
@@ -1918,7 +1730,14 @@
 					{
 						"name": "plAccounts",
 						"type": "ExecutePipeline",
-						"dependsOn": [],
+						"dependsOn": [
+							{
+								"activity": "plMain",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
 						"userProperties": [],
 						"typeProperties": {
 							"pipeline": {
@@ -2081,6 +1900,20 @@
 							"waitOnCompletion": true,
 							"parameters": {}
 						}
+					},
+					{
+						"name": "plMain",
+						"type": "ExecutePipeline",
+						"dependsOn": [],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "plMain",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true,
+							"parameters": {}
+						}
 					}
 				],
 				"annotations": []
@@ -2093,7 +1926,8 @@
 				"[concat(variables('factoryId'), '/pipelines/plInvoices')]",
 				"[concat(variables('factoryId'), '/pipelines/plJournals')]",
 				"[concat(variables('factoryId'), '/pipelines/plMisc')]",
-				"[concat(variables('factoryId'), '/pipelines/plRefreshVault')]"
+				"[concat(variables('factoryId'), '/pipelines/plRefreshVault')]",
+				"[concat(variables('factoryId'), '/pipelines/plMain')]"
 			]
 		},
 		{
@@ -2148,7 +1982,7 @@
 						],
 						"outputs": [
 							{
-								"referenceName": "sql_accounts",
+								"referenceName": "sql_OverpaymentAllocations",
 								"type": "DatasetReference",
 								"parameters": {}
 							}
@@ -2193,7 +2027,7 @@
 						],
 						"outputs": [
 							{
-								"referenceName": "sql_accounts",
+								"referenceName": "sql_Overpayments",
 								"type": "DatasetReference",
 								"parameters": {}
 							}
@@ -2245,7 +2079,7 @@
 						],
 						"outputs": [
 							{
-								"referenceName": "sql_accounts",
+								"referenceName": "sql_PrepaymentLineItems",
 								"type": "DatasetReference",
 								"parameters": {}
 							}
@@ -2290,7 +2124,7 @@
 						],
 						"outputs": [
 							{
-								"referenceName": "sql_accounts",
+								"referenceName": "sql_Prepayments",
 								"type": "DatasetReference",
 								"parameters": {}
 							}
@@ -2342,7 +2176,7 @@
 						],
 						"outputs": [
 							{
-								"referenceName": "sql_accounts",
+								"referenceName": "sql_PurchaseOrderLineItems",
 								"type": "DatasetReference",
 								"parameters": {}
 							}
@@ -2387,7 +2221,7 @@
 						],
 						"outputs": [
 							{
-								"referenceName": "sql_accounts",
+								"referenceName": "sql_PurchaseOrders",
 								"type": "DatasetReference",
 								"parameters": {}
 							}
@@ -2439,7 +2273,7 @@
 						],
 						"outputs": [
 							{
-								"referenceName": "sql_accounts",
+								"referenceName": "sql_ReceiptLineItems",
 								"type": "DatasetReference",
 								"parameters": {}
 							}
@@ -2484,7 +2318,7 @@
 						],
 						"outputs": [
 							{
-								"referenceName": "sql_accounts",
+								"referenceName": "sql_Receipts",
 								"type": "DatasetReference",
 								"parameters": {}
 							}
@@ -2529,7 +2363,7 @@
 						],
 						"outputs": [
 							{
-								"referenceName": "sql_accounts",
+								"referenceName": "sql_TaxRates",
 								"type": "DatasetReference",
 								"parameters": {}
 							}
@@ -2581,7 +2415,7 @@
 						],
 						"outputs": [
 							{
-								"referenceName": "sql_accounts",
+								"referenceName": "sql_TaxRateTaxComponents",
 								"type": "DatasetReference",
 								"parameters": {}
 							}
@@ -2610,16 +2444,25 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/OverpaymentAllocations')]",
-				"[concat(variables('factoryId'), '/datasets/sql_accounts')]",
+				"[concat(variables('factoryId'), '/datasets/sql_OverpaymentAllocations')]",
 				"[concat(variables('factoryId'), '/datasets/Overpayments')]",
+				"[concat(variables('factoryId'), '/datasets/sql_Overpayments')]",
 				"[concat(variables('factoryId'), '/datasets/PrepaymentLineItems')]",
+				"[concat(variables('factoryId'), '/datasets/sql_PrepaymentLineItems')]",
 				"[concat(variables('factoryId'), '/datasets/Prepayments')]",
+				"[concat(variables('factoryId'), '/datasets/sql_Prepayments')]",
 				"[concat(variables('factoryId'), '/datasets/PurchaseOrderLineItems')]",
+				"[concat(variables('factoryId'), '/datasets/sql_PurchaseOrderLineItems')]",
 				"[concat(variables('factoryId'), '/datasets/PurchaseOrders')]",
+				"[concat(variables('factoryId'), '/datasets/sql_PurchaseOrders')]",
 				"[concat(variables('factoryId'), '/datasets/ReceiptLineItems')]",
+				"[concat(variables('factoryId'), '/datasets/sql_ReceiptLineItems')]",
 				"[concat(variables('factoryId'), '/datasets/Receipts')]",
+				"[concat(variables('factoryId'), '/datasets/sql_Receipts')]",
 				"[concat(variables('factoryId'), '/datasets/TaxRates')]",
-				"[concat(variables('factoryId'), '/datasets/TaxRateTaxComponents')]"
+				"[concat(variables('factoryId'), '/datasets/sql_TaxRates')]",
+				"[concat(variables('factoryId'), '/datasets/TaxRateTaxComponents')]",
+				"[concat(variables('factoryId'), '/datasets/sql_TaxRateTaxComponents')]"
 			]
 		},
 		{
@@ -2726,7 +2569,7 @@
 						},
 						"userProperties": [],
 						"typeProperties": {
-							"url": "https://xerodatakeyvault.vault.azure.net/secrets/xero-client-id-bouva-fuel/e7e90078e1814ba2a36985f4b9fdf20c?api-version=7.0",
+							"url": "https://xerodatakeyvault.vault.azure.net/secrets/xero-client-id-bouva-fuel/92593a4487404f039c81f43ed71e9fa3?api-version=7.0",
 							"method": "GET",
 							"headers": {},
 							"authentication": {
@@ -3929,7 +3772,7 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/sql_accounts')]",
+			"name": "[concat(parameters('factoryName'), '/sql_AssetTypes')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -3945,102 +3788,7 @@
 				"schema": [],
 				"typeProperties": {
 					"schema": "dbo",
-					"table": "Accounts"
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/sqlXero')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/BovuaFuelApi')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "Xero",
-				"typeProperties": {
-					"connectionProperties": {
-						"host": "api.xero.com",
-						"authenticationType": "OAuth_2.0",
-						"consumerKey": {
-							"type": "AzureKeyVaultSecret",
-							"store": {
-								"referenceName": "XeroDataAKV",
-								"type": "LinkedServiceReference"
-							},
-							"secretName": "xero-client-id-bouva-fuel",
-							"secretVersion": ""
-						},
-						"privateKey": {
-							"type": "AzureKeyVaultSecret",
-							"store": {
-								"referenceName": "XeroDataAKV",
-								"type": "LinkedServiceReference"
-							},
-							"secretName": "xero-secret-bouva-fuel"
-						},
-						"useEncryptedEndpoints": true,
-						"tenantId": "a9aa610c-5c24-40e4-8653-76e1f732c593",
-						"refreshToken": {
-							"type": "AzureKeyVaultSecret",
-							"store": {
-								"referenceName": "XeroDataAKV",
-								"type": "LinkedServiceReference"
-							},
-							"secretName": "xero-refresh-token-bouva-fuel"
-						}
-					}
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/XeroDataAKV')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/XeroDataAKV')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureKeyVault",
-				"typeProperties": {
-					"baseUrl": "[parameters('XeroDataAKV_properties_typeProperties_baseUrl')]"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/sqlXero')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureSqlDatabase",
-				"typeProperties": {
-					"connectionString": "[parameters('sqlXero_connectionString')]"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/sql_associations')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "sqlXero",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "SQL"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": "Associations"
+					"table": "AssetTypes"
 				}
 			},
 			"dependsOn": [
@@ -4576,6 +4324,30 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/sql_Journal')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sqlXero",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQL"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "Journal"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/sqlXero')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/sql_JournalLines')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -4593,30 +4365,6 @@
 				"typeProperties": {
 					"schema": "dbo",
 					"table": "JournalLines"
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/sqlXero')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/sql_ManualJournalLines')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "sqlXero",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "SQL"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": "ManualJournalLines"
 				}
 			},
 			"dependsOn": [
@@ -4648,7 +4396,7 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/sql_Journal')]",
+			"name": "[concat(parameters('factoryName'), '/sql_ManualJournalLines')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -4664,7 +4412,7 @@
 				"schema": [],
 				"typeProperties": {
 					"schema": "dbo",
-					"table": "Journal"
+					"table": "ManualJournalLines"
 				}
 			},
 			"dependsOn": [
@@ -4744,7 +4492,7 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/sql_Projects')]",
+			"name": "[concat(parameters('factoryName'), '/sql_PrepaymentLineItems')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -4760,7 +4508,7 @@
 				"schema": [],
 				"typeProperties": {
 					"schema": "dbo",
-					"table": "Projects"
+					"table": "PrepaymentLineItems"
 				}
 			},
 			"dependsOn": [
@@ -4785,6 +4533,30 @@
 				"typeProperties": {
 					"schema": "dbo",
 					"table": "Prepayments"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/sqlXero')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/sql_Projects')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sqlXero",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQL"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "Projects"
 				}
 			},
 			"dependsOn": [
@@ -4960,30 +4732,6 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/sql_TaxRates')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "sqlXero",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "SQL"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": "TaxRates"
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/sqlXero')]"
-			]
-		},
-		{
 			"name": "[concat(parameters('factoryName'), '/sql_TaxRateTaxComponents')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -5001,6 +4749,30 @@
 				"typeProperties": {
 					"schema": "dbo",
 					"table": "TaxRateTaxComponents"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/sqlXero')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/sql_TaxRates')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sqlXero",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQL"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "TaxRates"
 				}
 			},
 			"dependsOn": [
@@ -5032,7 +4804,7 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/sql_AssetTypes')]",
+			"name": "[concat(parameters('factoryName'), '/sql_accounts')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -5048,11 +4820,778 @@
 				"schema": [],
 				"typeProperties": {
 					"schema": "dbo",
-					"table": "AssetTypes"
+					"table": "Accounts"
 				}
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/sqlXero')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/sql_associations')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sqlXero",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQL"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "Associations"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/sqlXero')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/BovuaFuelApi')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "Xero",
+				"typeProperties": {
+					"connectionProperties": {
+						"host": "api.xero.com",
+						"authenticationType": "OAuth_2.0",
+						"consumerKey": {
+							"type": "AzureKeyVaultSecret",
+							"store": {
+								"referenceName": "XeroDataAKV",
+								"type": "LinkedServiceReference"
+							},
+							"secretName": "xero-client-id-bouva-fuel",
+							"secretVersion": ""
+						},
+						"privateKey": {
+							"type": "AzureKeyVaultSecret",
+							"store": {
+								"referenceName": "XeroDataAKV",
+								"type": "LinkedServiceReference"
+							},
+							"secretName": "xero-secret-bouva-fuel",
+							"secretVersion": ""
+						},
+						"useEncryptedEndpoints": true,
+						"tenantId": "a9aa610c-5c24-40e4-8653-76e1f732c593",
+						"refreshToken": {
+							"type": "AzureKeyVaultSecret",
+							"store": {
+								"referenceName": "XeroDataAKV",
+								"type": "LinkedServiceReference"
+							},
+							"secretName": "xero-refresh-token-bouva-fuel",
+							"secretVersion": ""
+						}
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/XeroDataAKV')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/XeroDataAKV')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureKeyVault",
+				"typeProperties": {
+					"baseUrl": "[parameters('XeroDataAKV_properties_typeProperties_baseUrl')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/sqlXero')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureSqlDatabase",
+				"typeProperties": {
+					"connectionString": "[parameters('sqlXero_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/BankTransactionLineItemsTracking')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "BovuaFuelApi",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "Xero"
+				},
+				"annotations": [],
+				"type": "XeroObject",
+				"schema": [],
+				"typeProperties": {
+					"tableName": "\"Global\".\"Bank_Transaction_Line_Item_Tracking\""
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/BovuaFuelApi')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ContactsPurchasesTrackingCategories')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "BovuaFuelApi",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "Xero"
+				},
+				"annotations": [],
+				"type": "XeroObject",
+				"schema": [],
+				"typeProperties": {
+					"tableName": "\"Global\".\"Contacts_Purchases_Tracking_Categories\""
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/BovuaFuelApi')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ContactsSalesTrackingCategories')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "BovuaFuelApi",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "Xero"
+				},
+				"annotations": [],
+				"type": "XeroObject",
+				"schema": [],
+				"typeProperties": {
+					"tableName": "\"Global\".\"Contacts_Sales_Tracking_Categories\""
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/BovuaFuelApi')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/CreditNotesLineItemsTracking')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "BovuaFuelApi",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "Xero"
+				},
+				"annotations": [],
+				"type": "XeroObject",
+				"schema": [],
+				"typeProperties": {
+					"tableName": "\"Global\".\"Credit_Notes_Line_Items_Tracking\""
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/BovuaFuelApi')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/InvoiceLineItemsTracking')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "BovuaFuelApi",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "Xero"
+				},
+				"annotations": [],
+				"type": "XeroObject",
+				"schema": [],
+				"typeProperties": {
+					"tableName": "\"Global\".\"Invoices_Line_Items_Tracking\""
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/BovuaFuelApi')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ManualJournalLineItemsTracking')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "BovuaFuelApi",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "Xero"
+				},
+				"annotations": [],
+				"type": "XeroObject",
+				"schema": [],
+				"typeProperties": {
+					"tableName": "\"Global\".\"Manual_Journal_Line_Tracking\""
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/BovuaFuelApi')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/OverpaymentLineItemsTracking')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "BovuaFuelApi",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "Xero"
+				},
+				"annotations": [],
+				"type": "XeroObject",
+				"schema": [],
+				"typeProperties": {
+					"tableName": "\"Global\".\"Overpayment_Line_Items_Tracking\""
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/BovuaFuelApi')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/sql_BankTransactionLineItemsTracking')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sqlXero",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQL"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "BankTransactionLineItemsTracking"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/sqlXero')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/sql_ContactsPurchasesTrackingCategories')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sqlXero",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQL"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "ContactsPurchasesTrackingCategories"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/sqlXero')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/sql_ContactsSalesTrackingCategories')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sqlXero",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQL"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "ContactsSalesTrackingCategories"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/sqlXero')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/sql_CreditNotesLineItemsTracking')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sqlXero",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQL"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "CreditNotesLineItemsTracking"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/sqlXero')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/sql_InvoiceLineItemsTracking')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sqlXero",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQL"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "InvoiceLineItemsTracking"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/sqlXero')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/sql_ManualJournalLineItemsTracking')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sqlXero",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQL"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "ManualJournalLineItemsTracking"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/sqlXero')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/sql_OverpaymentLineItemsTracking')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sqlXero",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQL"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "OverpaymentLineItemsTracking"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/sqlXero')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/plTracking')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "BankTransactionLineItemsTracking",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "XeroSource"
+							},
+							"sink": {
+								"type": "AzureSqlSink",
+								"tableOption": "autoCreate"
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "BankTransactionLineItemsTracking",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "sql_BankTransactionLineItemsTracking",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					},
+					{
+						"name": "ContactsPurchasesTrackingCategories",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "XeroSource"
+							},
+							"sink": {
+								"type": "AzureSqlSink",
+								"tableOption": "autoCreate"
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "ContactsPurchasesTrackingCategories",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "sql_ContactsPurchasesTrackingCategories",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					},
+					{
+						"name": "ContactsSalesTrackingCategories",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "XeroSource"
+							},
+							"sink": {
+								"type": "AzureSqlSink",
+								"tableOption": "autoCreate"
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "ContactsSalesTrackingCategories",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "sql_ContactsSalesTrackingCategories",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					},
+					{
+						"name": "CreditNotesLineItemsTracking",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "XeroSource"
+							},
+							"sink": {
+								"type": "AzureSqlSink",
+								"tableOption": "autoCreate"
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "CreditNotesLineItemsTracking",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "sql_CreditNotesLineItemsTracking",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					},
+					{
+						"name": "InvoiceLineItemsTracking",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "XeroSource"
+							},
+							"sink": {
+								"type": "AzureSqlSink",
+								"tableOption": "autoCreate"
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "InvoiceLineItemsTracking",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "sql_InvoiceLineItemsTracking",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					},
+					{
+						"name": "ManualJournalLineItemsTracking",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "XeroSource"
+							},
+							"sink": {
+								"type": "AzureSqlSink",
+								"tableOption": "autoCreate"
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "ManualJournalLineItemsTracking",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "sql_ManualJournalLineItemsTracking",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					},
+					{
+						"name": "OverpaymentLineItemsTracking",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "XeroSource"
+							},
+							"sink": {
+								"type": "AzureSqlSink",
+								"tableOption": "autoCreate"
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "OverpaymentLineItemsTracking",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "sql_OverpaymentLineItemsTracking",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/BankTransactionLineItemsTracking')]",
+				"[concat(variables('factoryId'), '/datasets/sql_BankTransactionLineItemsTracking')]",
+				"[concat(variables('factoryId'), '/datasets/ContactsPurchasesTrackingCategories')]",
+				"[concat(variables('factoryId'), '/datasets/sql_ContactsPurchasesTrackingCategories')]",
+				"[concat(variables('factoryId'), '/datasets/ContactsSalesTrackingCategories')]",
+				"[concat(variables('factoryId'), '/datasets/sql_ContactsSalesTrackingCategories')]",
+				"[concat(variables('factoryId'), '/datasets/CreditNotesLineItemsTracking')]",
+				"[concat(variables('factoryId'), '/datasets/sql_CreditNotesLineItemsTracking')]",
+				"[concat(variables('factoryId'), '/datasets/InvoiceLineItemsTracking')]",
+				"[concat(variables('factoryId'), '/datasets/sql_InvoiceLineItemsTracking')]",
+				"[concat(variables('factoryId'), '/datasets/ManualJournalLineItemsTracking')]",
+				"[concat(variables('factoryId'), '/datasets/sql_ManualJournalLineItemsTracking')]",
+				"[concat(variables('factoryId'), '/datasets/OverpaymentLineItemsTracking')]",
+				"[concat(variables('factoryId'), '/datasets/sql_OverpaymentLineItemsTracking')]"
 			]
 		}
 	]

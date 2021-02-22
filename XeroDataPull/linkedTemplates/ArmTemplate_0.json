@@ -124,7 +124,7 @@
 						},
 						"userProperties": [],
 						"typeProperties": {
-							"url": "https://xerodatakeyvault.vault.azure.net/secrets/xero-client-id-bouva-fuel/e7e90078e1814ba2a36985f4b9fdf20c?api-version=7.0",
+							"url": "https://xerodatakeyvault.vault.azure.net/secrets/xero-client-id-bouva-fuel/92593a4487404f039c81f43ed71e9fa3?api-version=7.0",
 							"method": "GET",
 							"headers": {},
 							"authentication": {
@@ -318,7 +318,7 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/sql_accounts')]",
+			"name": "[concat(parameters('factoryName'), '/sql_AssetTypes')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -334,76 +334,7 @@
 				"schema": [],
 				"typeProperties": {
 					"schema": "dbo",
-					"table": "Accounts"
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/sqlXero')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/BovuaFuelApi')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "Xero",
-				"typeProperties": {
-					"connectionProperties": {
-						"host": "api.xero.com",
-						"authenticationType": "OAuth_2.0",
-						"consumerKey": {
-							"type": "AzureKeyVaultSecret",
-							"store": {
-								"referenceName": "XeroDataAKV",
-								"type": "LinkedServiceReference"
-							},
-							"secretName": "xero-client-id-bouva-fuel",
-							"secretVersion": ""
-						},
-						"privateKey": {
-							"type": "AzureKeyVaultSecret",
-							"store": {
-								"referenceName": "XeroDataAKV",
-								"type": "LinkedServiceReference"
-							},
-							"secretName": "xero-secret-bouva-fuel"
-						},
-						"useEncryptedEndpoints": true,
-						"tenantId": "a9aa610c-5c24-40e4-8653-76e1f732c593",
-						"refreshToken": {
-							"type": "AzureKeyVaultSecret",
-							"store": {
-								"referenceName": "XeroDataAKV",
-								"type": "LinkedServiceReference"
-							},
-							"secretName": "xero-refresh-token-bouva-fuel"
-						}
-					}
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/XeroDataAKV')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/sql_associations')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "sqlXero",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "SQL"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": "Associations"
+					"table": "AssetTypes"
 				}
 			},
 			"dependsOn": [
@@ -740,6 +671,54 @@
 				"typeProperties": {
 					"schema": "dbo",
 					"table": "ExpenseClaimPayments"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/sqlXero')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/sql_ExpenseClaimReceipts')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sqlXero",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQL"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "ExpenseClaimReceipts"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/sqlXero')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/sql_ExpenseClaims')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sqlXero",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQL"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "ExpenseClaims"
 				}
 			},
 			"dependsOn": [

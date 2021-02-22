@@ -13,28 +13,6 @@
 	},
 	"resources": [
 		{
-			"name": "[concat(parameters('factoryName'), '/sql_Receipts')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "sqlXero",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "SQL"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": "Receipts"
-				}
-			},
-			"dependsOn": []
-		},
-		{
 			"name": "[concat(parameters('factoryName'), '/sql_RepeatingInvoiceLineItems')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -101,28 +79,6 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/sql_TaxRates')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "sqlXero",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "SQL"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": "TaxRates"
-				}
-			},
-			"dependsOn": []
-		},
-		{
 			"name": "[concat(parameters('factoryName'), '/sql_TaxRateTaxComponents')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -140,6 +96,28 @@
 				"typeProperties": {
 					"schema": "dbo",
 					"table": "TaxRateTaxComponents"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/sql_TaxRates')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sqlXero",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQL"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "TaxRates"
 				}
 			},
 			"dependsOn": []
@@ -167,7 +145,7 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/sql_AssetTypes')]",
+			"name": "[concat(parameters('factoryName'), '/sql_accounts')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -183,7 +161,228 @@
 				"schema": [],
 				"typeProperties": {
 					"schema": "dbo",
-					"table": "AssetTypes"
+					"table": "Accounts"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/sql_associations')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sqlXero",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQL"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "Associations"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/BovuaFuelApi')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "Xero",
+				"typeProperties": {
+					"connectionProperties": {
+						"host": "api.xero.com",
+						"authenticationType": "OAuth_2.0",
+						"consumerKey": {
+							"type": "AzureKeyVaultSecret",
+							"store": {
+								"referenceName": "XeroDataAKV",
+								"type": "LinkedServiceReference"
+							},
+							"secretName": "xero-client-id-bouva-fuel",
+							"secretVersion": ""
+						},
+						"privateKey": {
+							"type": "AzureKeyVaultSecret",
+							"store": {
+								"referenceName": "XeroDataAKV",
+								"type": "LinkedServiceReference"
+							},
+							"secretName": "xero-secret-bouva-fuel",
+							"secretVersion": ""
+						},
+						"useEncryptedEndpoints": true,
+						"tenantId": "a9aa610c-5c24-40e4-8653-76e1f732c593",
+						"refreshToken": {
+							"type": "AzureKeyVaultSecret",
+							"store": {
+								"referenceName": "XeroDataAKV",
+								"type": "LinkedServiceReference"
+							},
+							"secretName": "xero-refresh-token-bouva-fuel",
+							"secretVersion": ""
+						}
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/sql_BankTransactionLineItemsTracking')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sqlXero",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQL"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "BankTransactionLineItemsTracking"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/sql_ContactsPurchasesTrackingCategories')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sqlXero",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQL"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "ContactsPurchasesTrackingCategories"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/sql_ContactsSalesTrackingCategories')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sqlXero",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQL"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "ContactsSalesTrackingCategories"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/sql_CreditNotesLineItemsTracking')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sqlXero",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQL"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "CreditNotesLineItemsTracking"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/sql_InvoiceLineItemsTracking')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sqlXero",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQL"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "InvoiceLineItemsTracking"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/sql_ManualJournalLineItemsTracking')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sqlXero",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQL"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "ManualJournalLineItemsTracking"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/sql_OverpaymentLineItemsTracking')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sqlXero",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQL"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "OverpaymentLineItemsTracking"
 				}
 			},
 			"dependsOn": []
@@ -207,7 +406,9 @@
 					"tableName": "\"Global\".\"Accounts\""
 				}
 			},
-			"dependsOn": []
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/BovuaFuelApi')]"
+			]
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/AssetTypes')]",
@@ -228,7 +429,9 @@
 					"tableName": "\"Global\".\"AssetTypes\""
 				}
 			},
-			"dependsOn": []
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/BovuaFuelApi')]"
+			]
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/Associations')]",
@@ -249,7 +452,9 @@
 					"tableName": "\"Global\".\"Associations\""
 				}
 			},
-			"dependsOn": []
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/BovuaFuelApi')]"
+			]
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/BankFeedConnections')]",
@@ -270,175 +475,9 @@
 					"tableName": "\"Global\".\"BankFeedConnections\""
 				}
 			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/BankTransactionLineItems')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "BovuaFuelApi",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "Xero"
-				},
-				"annotations": [],
-				"type": "XeroObject",
-				"schema": [],
-				"typeProperties": {
-					"tableName": "\"Global\".\"Bank_Transaction_Line_Items\""
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/BankTransactions')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "BovuaFuelApi",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "Xero"
-				},
-				"annotations": [],
-				"type": "XeroObject",
-				"schema": [],
-				"typeProperties": {
-					"tableName": "\"Global\".\"Bank_Transactions\""
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/BankTransfers')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "BovuaFuelApi",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "Xero"
-				},
-				"annotations": [],
-				"type": "XeroObject",
-				"schema": [],
-				"typeProperties": {
-					"tableName": "\"Global\".\"Bank_Transfers\""
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/ContactAddresses')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "BovuaFuelApi",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "Xero"
-				},
-				"annotations": [],
-				"type": "XeroObject",
-				"schema": [],
-				"typeProperties": {
-					"tableName": "\"Global\".\"Contacts_Addresses\""
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/ContactGroupContacts')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "BovuaFuelApi",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "Xero"
-				},
-				"annotations": [],
-				"type": "XeroObject",
-				"schema": [],
-				"typeProperties": {
-					"tableName": "\"Global\".\"Contact_Group_Contacts\""
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/ContactGroups')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "BovuaFuelApi",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "Xero"
-				},
-				"annotations": [],
-				"type": "XeroObject",
-				"schema": [],
-				"typeProperties": {
-					"tableName": "\"Global\".\"Contact_Groups\""
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Contacts')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "BovuaFuelApi",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "Xero"
-				},
-				"annotations": [],
-				"type": "XeroObject",
-				"schema": [],
-				"typeProperties": {
-					"tableName": "\"Global\".\"Contacts\""
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/ContactsContactPerson')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "BovuaFuelApi",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "Xero"
-				},
-				"annotations": [],
-				"type": "XeroObject",
-				"schema": [],
-				"typeProperties": {
-					"tableName": "\"Global\".\"Contacts_Contact_Persons\""
-				}
-			},
-			"dependsOn": []
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/BovuaFuelApi')]"
+			]
 		}
 	]
 }

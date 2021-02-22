@@ -13,6 +13,174 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/BankTransactionLineItems')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "BovuaFuelApi",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "Xero"
+				},
+				"annotations": [],
+				"type": "XeroObject",
+				"schema": [],
+				"typeProperties": {
+					"tableName": "\"Global\".\"Bank_Transaction_Line_Items\""
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/BankTransactions')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "BovuaFuelApi",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "Xero"
+				},
+				"annotations": [],
+				"type": "XeroObject",
+				"schema": [],
+				"typeProperties": {
+					"tableName": "\"Global\".\"Bank_Transactions\""
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/BankTransfers')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "BovuaFuelApi",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "Xero"
+				},
+				"annotations": [],
+				"type": "XeroObject",
+				"schema": [],
+				"typeProperties": {
+					"tableName": "\"Global\".\"Bank_Transfers\""
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ContactAddresses')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "BovuaFuelApi",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "Xero"
+				},
+				"annotations": [],
+				"type": "XeroObject",
+				"schema": [],
+				"typeProperties": {
+					"tableName": "\"Global\".\"Contacts_Addresses\""
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ContactGroupContacts')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "BovuaFuelApi",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "Xero"
+				},
+				"annotations": [],
+				"type": "XeroObject",
+				"schema": [],
+				"typeProperties": {
+					"tableName": "\"Global\".\"Contact_Group_Contacts\""
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ContactGroups')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "BovuaFuelApi",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "Xero"
+				},
+				"annotations": [],
+				"type": "XeroObject",
+				"schema": [],
+				"typeProperties": {
+					"tableName": "\"Global\".\"Contact_Groups\""
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Contacts')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "BovuaFuelApi",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "Xero"
+				},
+				"annotations": [],
+				"type": "XeroObject",
+				"schema": [],
+				"typeProperties": {
+					"tableName": "\"Global\".\"Contacts\""
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ContactsContactPerson')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "BovuaFuelApi",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "Xero"
+				},
+				"annotations": [],
+				"type": "XeroObject",
+				"schema": [],
+				"typeProperties": {
+					"tableName": "\"Global\".\"Contacts_Contact_Persons\""
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/ContactsPhones')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -260,174 +428,6 @@
 				"schema": [],
 				"typeProperties": {
 					"tableName": "\"Global\".\"Invoices_Prepayments\""
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Items')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "BovuaFuelApi",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "Xero"
-				},
-				"annotations": [],
-				"type": "XeroObject",
-				"schema": [],
-				"typeProperties": {
-					"tableName": "\"Global\".\"Items\""
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/JournalLines')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "BovuaFuelApi",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "Xero"
-				},
-				"annotations": [],
-				"type": "XeroObject",
-				"schema": [],
-				"typeProperties": {
-					"tableName": "\"Global\".\"Journal_Lines\""
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Journals')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "BovuaFuelApi",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "Xero"
-				},
-				"annotations": [],
-				"type": "XeroObject",
-				"schema": [],
-				"typeProperties": {
-					"tableName": "\"Global\".\"Journals\""
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/ManualJournalLines')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "BovuaFuelApi",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "Xero"
-				},
-				"annotations": [],
-				"type": "XeroObject",
-				"schema": [],
-				"typeProperties": {
-					"tableName": "\"Global\".\"Manual_Journal_Lines\""
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/ManualJournals')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "BovuaFuelApi",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "Xero"
-				},
-				"annotations": [],
-				"type": "XeroObject",
-				"schema": [],
-				"typeProperties": {
-					"tableName": "\"Global\".\"Manual_Journals\""
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Organisations')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "BovuaFuelApi",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "Xero"
-				},
-				"annotations": [],
-				"type": "XeroObject",
-				"schema": [],
-				"typeProperties": {
-					"tableName": "\"Global\".\"Organisations\""
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/OverpaymentAllocations')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "BovuaFuelApi",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "Xero"
-				},
-				"annotations": [],
-				"type": "XeroObject",
-				"schema": [],
-				"typeProperties": {
-					"tableName": "\"Global\".\"Overpayments_Allocations\""
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Overpayments')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "BovuaFuelApi",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "Xero"
-				},
-				"annotations": [],
-				"type": "XeroObject",
-				"schema": [],
-				"typeProperties": {
-					"tableName": "\"Global\".\"Overpayments\""
 				}
 			},
 			"dependsOn": []

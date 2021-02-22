@@ -132,7 +132,7 @@
 				]
 			},
 			{
-				"name": "ContactsSalesTrackingCategories_copy1",
+				"name": "CreditNotesLineItemsTracking",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
@@ -163,13 +163,142 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "ContactsSalesTrackingCategories",
+						"referenceName": "CreditNotesLineItemsTracking",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "sql_ContactsSalesTrackingCategories",
+						"referenceName": "sql_CreditNotesLineItemsTracking",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "InvoiceLineItemsTracking",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "XeroSource"
+					},
+					"sink": {
+						"type": "AzureSqlSink",
+						"tableOption": "autoCreate"
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "InvoiceLineItemsTracking",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "sql_InvoiceLineItemsTracking",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "ManualJournalLineItemsTracking",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "XeroSource"
+					},
+					"sink": {
+						"type": "AzureSqlSink",
+						"tableOption": "autoCreate"
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "ManualJournalLineItemsTracking",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "sql_ManualJournalLineItemsTracking",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "OverpaymentLineItemsTracking",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "XeroSource"
+					},
+					"sink": {
+						"type": "AzureSqlSink",
+						"tableOption": "autoCreate"
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "OverpaymentLineItemsTracking",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "sql_OverpaymentLineItemsTracking",
 						"type": "DatasetReference"
 					}
 				]

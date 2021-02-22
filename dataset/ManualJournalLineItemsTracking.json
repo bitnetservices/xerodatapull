@@ -1,0 +1,18 @@
+{
+	"name": "ManualJournalLineItemsTracking",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "BovuaFuelApi",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Xero"
+		},
+		"annotations": [],
+		"type": "XeroObject",
+		"schema": [],
+		"typeProperties": {
+			"tableName": "\"Global\".\"Manual_Journal_Line_Tracking\""
+		}
+	}
+}

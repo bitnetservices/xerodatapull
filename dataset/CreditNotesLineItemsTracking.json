@@ -1,0 +1,18 @@
+{
+	"name": "CreditNotesLineItemsTracking",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "BovuaFuelApi",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Xero"
+		},
+		"annotations": [],
+		"type": "XeroObject",
+		"schema": [],
+		"typeProperties": {
+			"tableName": "\"Global\".\"Credit_Notes_Line_Items_Tracking\""
+		}
+	}
+}

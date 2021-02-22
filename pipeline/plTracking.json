@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Accounts",
+				"name": "BankTransactionLineItemsTracking",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
@@ -34,13 +34,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "Accounts",
+						"referenceName": "BankTransactionLineItemsTracking",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "sql_accounts",
+						"referenceName": "sql_BankTransactionLineItemsTracking",
 						"type": "DatasetReference"
 					}
 				]

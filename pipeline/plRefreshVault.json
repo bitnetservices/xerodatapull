@@ -99,7 +99,7 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"url": "https://xerodatakeyvault.vault.azure.net/secrets/xero-client-id-bouva-fuel/e7e90078e1814ba2a36985f4b9fdf20c?api-version=7.0",
+					"url": "https://xerodatakeyvault.vault.azure.net/secrets/xero-client-id-bouva-fuel/92593a4487404f039c81f43ed71e9fa3?api-version=7.0",
 					"method": "GET",
 					"authentication": {
 						"type": "MSI",

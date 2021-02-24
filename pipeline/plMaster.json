@@ -147,13 +147,7 @@
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "plJournals",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					},
-					{
-						"activity": "plMisc",
+						"activity": "plTracking",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -176,6 +170,32 @@
 				"typeProperties": {
 					"pipeline": {
 						"referenceName": "plMain",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "plTracking",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "plJournals",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "plMisc",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "plTracking",
 						"type": "PipelineReference"
 					},
 					"waitOnCompletion": true

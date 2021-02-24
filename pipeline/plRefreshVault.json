@@ -385,10 +385,7 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"url": {
-						"value": "https://xerodatakeyvault.vault.azure.net/secrets/xero-refresh-token-bouva-fuel?api-version=7.0",
-						"type": "Expression"
-					},
+					"url": "https://xerodatakeyvault.vault.azure.net/secrets/xero-refresh-token-bouva-fuel?api-version=7.0",
 					"method": "PUT",
 					"body": {
 						"value": "{\n  \"value\": \"@variables('vNew_refresh_token')\"\n}",
@@ -420,7 +417,7 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"url": "https://xerodatakeyvault.vault.azure.net/deletedkeys/xero-refresh-token-bouva-fuel?api-version=7.0",
+					"url": "https://xerodatakeyvault.vault.azure.net/deletedsecrets/xero-refresh-token-bouva-fuel?api-version=7.0",
 					"method": "DELETE",
 					"body": {
 						"value": "@variables('vNew_refresh_token')",

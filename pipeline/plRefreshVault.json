@@ -22,10 +22,7 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"url": {
-						"value": "https://xerodatakeyvault.vault.azure.net/secrets/xero-refresh-token-bouva-fuel?api-version=7.0",
-						"type": "Expression"
-					},
+					"url": "https://xerodatakeyvault.vault.azure.net/secrets/xero-refresh-token-bouva-fuel?api-version=7.0",
 					"method": "DELETE",
 					"body": {
 						"value": "@variables('vNew_refresh_token')",
@@ -361,7 +358,7 @@
 				],
 				"userProperties": [],
 				"typeProperties": {
-					"variableName": "vClient_id",
+					"variableName": "vRefresh_token_version",
 					"value": {
 						"value": "@activity('get_xero_token_data').output.firstRow.token_version",
 						"type": "Expression"
@@ -373,7 +370,7 @@
 				"type": "WebActivity",
 				"dependsOn": [
 					{
-						"activity": "Set New Refresh Token",
+						"activity": "Purge Refresh Token",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -423,10 +420,7 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"url": {
-						"value": "https://xerodatakeyvault.vault.azure.net/deletedkeys/xero-refresh-token-bouva-fuel?api-version=7.0",
-						"type": "Expression"
-					},
+					"url": "https://xerodatakeyvault.vault.azure.net/deletedkeys/xero-refresh-token-bouva-fuel?api-version=7.0",
 					"method": "DELETE",
 					"body": {
 						"value": "@variables('vNew_refresh_token')",

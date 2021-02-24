@@ -107,7 +107,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"url": {
-						"value": "@https://xerodatakeyvault.vault.azure.net/secrets/xero-client-id-bouva-fuel/variables('vClient_id_version')?api-version=7.0",
+						"value": "https://xerodatakeyvault.vault.azure.net/secrets/xero-client-id-bouva-fuel/@{variables('vClient_id_version')}?api-version=7.0",
 						"type": "Expression"
 					},
 					"method": "GET",
@@ -138,7 +138,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"url": {
-						"value": "@https://xerodatakeyvault.vault.azure.net/secrets/xero-secret-bouva-fuel/variables('vClient_secret_version')?api-version=7.0",
+						"value": "https://xerodatakeyvault.vault.azure.net/secrets/xero-secret-bouva-fuel/@{variables('vClient_secret_version')}?api-version=7.0",
 						"type": "Expression"
 					},
 					"method": "GET",
@@ -209,7 +209,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"url": {
-						"value": "@https://xerodatakeyvault.vault.azure.net/secrets/xero-refresh-token-bouva-fuel/variables('vRefresh_token_version')?api-version=7.0",
+						"value": "https://xerodatakeyvault.vault.azure.net/secrets/xero-refresh-token-bouva-fuel/@{variables('vRefresh_token_version')}?api-version=7.0",
 						"type": "Expression"
 					},
 					"method": "GET",

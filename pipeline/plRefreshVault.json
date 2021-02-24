@@ -440,7 +440,7 @@
 			},
 			{
 				"name": "update_xero_token_key",
-				"type": "Lookup",
+				"type": "SqlServerStoredProcedure",
 				"dependsOn": [
 					{
 						"activity": "Set Refresh Token",
@@ -458,32 +458,27 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"source": {
-						"type": "AzureSqlSource",
-						"sqlReaderStoredProcedureName": "[dbo].[usp_UpdateRefreshToken]",
-						"storedProcedureParameters": {
-							"org_name": {
-								"type": "String",
-								"value": {
-									"value": "@pipeline().parameters.pOrgName",
-									"type": "Expression"
-								}
+					"storedProcedureName": "[dbo].[usp_UpdateRefreshToken]",
+					"storedProcedureParameters": {
+						"org_name": {
+							"value": {
+								"value": "@pipeline().parameters.pOrgName",
+								"type": "Expression"
 							},
-							"token_version": {
-								"type": "String",
-								"value": {
-									"value": "replace(@activity('Set Refresh Token').output.id, 'https://xerodatakeyvault.vault.azure.net/secrets/xero-refresh-token-bouva-fuel/','')",
-									"type": "Expression"
-								}
-							}
+							"type": "String"
 						},
-						"queryTimeout": "02:00:00",
-						"partitionOption": "None"
-					},
-					"dataset": {
-						"referenceName": "sql_client_refresh_token_data",
-						"type": "DatasetReference"
+						"token_version": {
+							"value": {
+								"value": "replace(@activity('Set Refresh Token').output.id, 'https://xerodatakeyvault.vault.azure.net/secrets/xero-refresh-token-bouva-fuel/','')",
+								"type": "Expression"
+							},
+							"type": "String"
+						}
 					}
+				},
+				"linkedServiceName": {
+					"referenceName": "sqlXero",
+					"type": "LinkedServiceReference"
 				}
 			}
 		],

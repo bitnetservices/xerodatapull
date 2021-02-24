@@ -1,0 +1,19 @@
+{
+	"name": "sql_client_refresh_token_data",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "sqlXero",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "SQL"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "ClientRefrehTokenData"
+		}
+	}
+}

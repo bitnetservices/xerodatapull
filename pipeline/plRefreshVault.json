@@ -89,7 +89,14 @@
 			{
 				"name": "Read Client Id",
 				"type": "WebActivity",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "Set Client Id Version",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
@@ -110,7 +117,14 @@
 			{
 				"name": "Read Client Secret",
 				"type": "WebActivity",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "Set Client Secret Version",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
@@ -171,7 +185,14 @@
 			{
 				"name": "Read Refresh Token",
 				"type": "WebActivity",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "Set Refresh Token Version",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
@@ -240,6 +261,79 @@
 						"type": "Expression"
 					}
 				}
+			},
+			{
+				"name": "get_xero_token_data",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": []
+			},
+			{
+				"name": "Set Client Id Version",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "get_xero_token_data",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "vClient_id",
+					"value": {
+						"value": "@activity('Read Client Id').output.value",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Set Client Secret Version",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "get_xero_token_data",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "vClient_id",
+					"value": {
+						"value": "@activity('Read Client Id').output.value",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Set Refresh Token Version",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "get_xero_token_data",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "vClient_id",
+					"value": {
+						"value": "@activity('Read Client Id').output.value",
+						"type": "Expression"
+					}
+				}
 			}
 		],
 		"variables": {
@@ -256,6 +350,15 @@
 				"type": "String"
 			},
 			"vRefresh_token_data": {
+				"type": "String"
+			},
+			"vClient_id_version": {
+				"type": "String"
+			},
+			"vClient_secret_version": {
+				"type": "String"
+			},
+			"vClient_refresh_token_version": {
 				"type": "String"
 			}
 		},

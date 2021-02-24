@@ -266,7 +266,7 @@
 				"typeProperties": {
 					"variableName": "vRefresh_token_data",
 					"value": {
-						"value": "grant_type=refresh_token&refresh_token=@variables('vRefresh_token')&client_id=@variables('vClient_id')&client_secret=@variables('vClient_secret')\"",
+						"value": "grant_type=refresh_token&refresh_token=@{variables('vRefresh_token')}&client_id=@{variables('vClient_id')}&client_secret=@{variables('vClient_secret')}",
 						"type": "Expression"
 					}
 				}

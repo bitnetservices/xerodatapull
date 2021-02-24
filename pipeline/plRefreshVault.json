@@ -273,7 +273,24 @@
 					"secureOutput": false,
 					"secureInput": false
 				},
-				"userProperties": []
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderStoredProcedureName": "[dbo].[usp_GetClientRefreshTokenData]",
+						"storedProcedureParameters": {
+							"org_name": {
+								"type": "String"
+							}
+						},
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "sql_client_refresh_token_data",
+						"type": "DatasetReference"
+					}
+				}
 			},
 			{
 				"name": "Set Client Id Version",
@@ -336,6 +353,12 @@
 				}
 			}
 		],
+		"parameters": {
+			"pOrgName": {
+				"type": "string",
+				"defaultValue": "Bovua Fuel (Pty) Ltd"
+			}
+		},
 		"variables": {
 			"vNew_refresh_token": {
 				"type": "String"

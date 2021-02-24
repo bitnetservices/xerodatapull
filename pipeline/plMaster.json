@@ -182,6 +182,12 @@
 				}
 			}
 		],
+		"variables": {
+			"org_name": {
+				"type": "String",
+				"defaultValue": "Bovua Fuel (Pty) Ltd"
+			}
+		},
 		"annotations": []
 	}
 }

@@ -1916,6 +1916,12 @@
 						}
 					}
 				],
+				"variables": {
+					"org_name": {
+						"type": "String",
+						"defaultValue": "Bovua Fuel (Pty) Ltd"
+					}
+				},
 				"annotations": []
 			},
 			"dependsOn": [
@@ -2472,7 +2478,7 @@
 			"properties": {
 				"activities": [
 					{
-						"name": "Update Refresh Token",
+						"name": "Delete Refresh Token",
 						"type": "WebActivity",
 						"dependsOn": [
 							{
@@ -2491,8 +2497,8 @@
 						},
 						"userProperties": [],
 						"typeProperties": {
-							"url": "https://xerodatakeyvault.vault.azure.net/secrets/xero-refresh-token-bouva-fuel/bbc4d1ec66d449db8a6b5713896751ca?api-version=7.0",
-							"method": "POST",
+							"url": "https://xerodatakeyvault.vault.azure.net/secrets/xero-refresh-token-bouva-fuel?api-version=7.0",
+							"method": "DELETE",
 							"headers": {},
 							"body": {
 								"value": "@variables('vNew_refresh_token')",
@@ -2528,7 +2534,7 @@
 							"method": "POST",
 							"headers": {
 								"grant_type": "refresh_token",
-								"Content-Type": "application/json"
+								"Content-Type": "application/x-www-form-urlencoded"
 							},
 							"body": {
 								"value": "@variables('vRefresh_token_data')",
@@ -2551,7 +2557,7 @@
 						"typeProperties": {
 							"variableName": "vNew_refresh_token",
 							"value": {
-								"value": "@activity('Get Xero Refresh Token').output.value",
+								"value": "@activity('Get Xero Refresh Token').output.refresh_token",
 								"type": "Expression"
 							}
 						}
@@ -2559,7 +2565,14 @@
 					{
 						"name": "Read Client Id",
 						"type": "WebActivity",
-						"dependsOn": [],
+						"dependsOn": [
+							{
+								"activity": "Set Client Id Version",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
 						"policy": {
 							"timeout": "7.00:00:00",
 							"retry": 0,
@@ -2569,7 +2582,10 @@
 						},
 						"userProperties": [],
 						"typeProperties": {
-							"url": "https://xerodatakeyvault.vault.azure.net/secrets/xero-client-id-bouva-fuel/92593a4487404f039c81f43ed71e9fa3?api-version=7.0",
+							"url": {
+								"value": "https://xerodatakeyvault.vault.azure.net/secrets/xero-client-id-bouva-fuel/@{variables('vClient_id_version')}?api-version=7.0",
+								"type": "Expression"
+							},
 							"method": "GET",
 							"headers": {},
 							"authentication": {
@@ -2581,7 +2597,14 @@
 					{
 						"name": "Read Client Secret",
 						"type": "WebActivity",
-						"dependsOn": [],
+						"dependsOn": [
+							{
+								"activity": "Set Client Secret Version",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
 						"policy": {
 							"timeout": "7.00:00:00",
 							"retry": 0,
@@ -2591,7 +2614,10 @@
 						},
 						"userProperties": [],
 						"typeProperties": {
-							"url": "https://xerodatakeyvault.vault.azure.net/secrets/xero-secret-bouva-fuel/d4de9cc59dfe41c3a5a455f2daccfd25?api-version=7.0",
+							"url": {
+								"value": "https://xerodatakeyvault.vault.azure.net/secrets/xero-secret-bouva-fuel/@{variables('vClient_secret_version')}?api-version=7.0",
+								"type": "Expression"
+							},
 							"method": "GET",
 							"headers": {},
 							"authentication": {
@@ -2643,7 +2669,14 @@
 					{
 						"name": "Read Refresh Token",
 						"type": "WebActivity",
-						"dependsOn": [],
+						"dependsOn": [
+							{
+								"activity": "Set Refresh Token Version",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
 						"policy": {
 							"timeout": "7.00:00:00",
 							"retry": 0,
@@ -2653,7 +2686,10 @@
 						},
 						"userProperties": [],
 						"typeProperties": {
-							"url": "https://xerodatakeyvault.vault.azure.net/secrets/xero-refresh-token-bouva-fuel/1e38001e6e664f1baba37cac82c977ad?api-version=7.0",
+							"url": {
+								"value": "https://xerodatakeyvault.vault.azure.net/secrets/xero-refresh-token-bouva-fuel/@{variables('vRefresh_token_version')}?api-version=7.0",
+								"type": "Expression"
+							},
 							"method": "GET",
 							"headers": {},
 							"authentication": {
@@ -2713,8 +2749,218 @@
 								"type": "Expression"
 							}
 						}
+					},
+					{
+						"name": "get_xero_token_data",
+						"type": "Lookup",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "AzureSqlSource",
+								"sqlReaderStoredProcedureName": "[[dbo].[usp_GetClientRefreshTokenData]",
+								"storedProcedureParameters": {
+									"org_name": {
+										"type": "String",
+										"value": {
+											"value": "@pipeline().parameters.pOrgName",
+											"type": "Expression"
+										}
+									}
+								},
+								"queryTimeout": "02:00:00",
+								"partitionOption": "None"
+							},
+							"dataset": {
+								"referenceName": "sql_client_refresh_token_data",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						}
+					},
+					{
+						"name": "Set Client Id Version",
+						"type": "SetVariable",
+						"dependsOn": [
+							{
+								"activity": "get_xero_token_data",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"variableName": "vClient_id_version",
+							"value": {
+								"value": "@activity('get_xero_token_data').output.firstRow.client_id_version",
+								"type": "Expression"
+							}
+						}
+					},
+					{
+						"name": "Set Client Secret Version",
+						"type": "SetVariable",
+						"dependsOn": [
+							{
+								"activity": "get_xero_token_data",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"variableName": "vClient_secret_version",
+							"value": {
+								"value": "@activity('get_xero_token_data').output.firstRow.secret_key_version",
+								"type": "Expression"
+							}
+						}
+					},
+					{
+						"name": "Set Refresh Token Version",
+						"type": "SetVariable",
+						"dependsOn": [
+							{
+								"activity": "get_xero_token_data",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"variableName": "vRefresh_token_version",
+							"value": {
+								"value": "@activity('get_xero_token_data').output.firstRow.token_version",
+								"type": "Expression"
+							}
+						}
+					},
+					{
+						"name": "Set Refresh Token",
+						"type": "WebActivity",
+						"dependsOn": [
+							{
+								"activity": "Purge Refresh Token",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"url": "https://xerodatakeyvault.vault.azure.net/secrets/xero-refresh-token-bouva-fuel?api-version=7.0",
+							"method": "PUT",
+							"headers": {},
+							"body": {
+								"value": "{\n  \"value\": \"@variables('vNew_refresh_token')\"\n}",
+								"type": "Expression"
+							},
+							"authentication": {
+								"type": "MSI",
+								"resource": "https://vault.azure.net"
+							}
+						}
+					},
+					{
+						"name": "Purge Refresh Token",
+						"type": "WebActivity",
+						"dependsOn": [
+							{
+								"activity": "Delete Refresh Token",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"url": "https://xerodatakeyvault.vault.azure.net/deletedsecrets/xero-refresh-token-bouva-fuel?api-version=7.0",
+							"method": "DELETE",
+							"headers": {},
+							"body": {
+								"value": "@variables('vNew_refresh_token')",
+								"type": "Expression"
+							},
+							"authentication": {
+								"type": "MSI",
+								"resource": "https://vault.azure.net"
+							}
+						}
+					},
+					{
+						"name": "update_xero_token_key",
+						"type": "SqlServerStoredProcedure",
+						"dependsOn": [
+							{
+								"activity": "Set Refresh Token",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"storedProcedureName": "[[dbo].[usp_UpdateRefreshToken]",
+							"storedProcedureParameters": {
+								"org_name": {
+									"value": {
+										"value": "@pipeline().parameters.pOrgName",
+										"type": "Expression"
+									},
+									"type": "String"
+								},
+								"token_version": {
+									"value": {
+										"value": "@replace(activity('Set Refresh Token').output.id, 'https://xerodatakeyvault.vault.azure.net/secrets/xero-refresh-token-bouva-fuel/','')",
+										"type": "Expression"
+									},
+									"type": "String"
+								}
+							}
+						},
+						"linkedServiceName": {
+							"referenceName": "sqlXero",
+							"type": "LinkedServiceReference"
+						}
 					}
 				],
+				"parameters": {
+					"pOrgName": {
+						"type": "string",
+						"defaultValue": "Bovua Fuel (Pty) Ltd"
+					}
+				},
 				"variables": {
 					"vNew_refresh_token": {
 						"type": "String"
@@ -2730,11 +2976,364 @@
 					},
 					"vRefresh_token_data": {
 						"type": "String"
+					},
+					"vClient_id_version": {
+						"type": "String"
+					},
+					"vClient_secret_version": {
+						"type": "String"
+					},
+					"vRefresh_token_version": {
+						"type": "String"
 					}
 				},
 				"annotations": []
 			},
-			"dependsOn": []
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/sql_client_refresh_token_data')]",
+				"[concat(variables('factoryId'), '/linkedServices/sqlXero')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/plTracking')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "BankTransactionLineItemsTracking",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "XeroSource"
+							},
+							"sink": {
+								"type": "AzureSqlSink",
+								"tableOption": "autoCreate"
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "BankTransactionLineItemsTracking",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "sql_BankTransactionLineItemsTracking",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					},
+					{
+						"name": "ContactsPurchasesTrackingCategories",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "XeroSource"
+							},
+							"sink": {
+								"type": "AzureSqlSink",
+								"tableOption": "autoCreate"
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "ContactsPurchasesTrackingCategories",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "sql_ContactsPurchasesTrackingCategories",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					},
+					{
+						"name": "ContactsSalesTrackingCategories",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "XeroSource"
+							},
+							"sink": {
+								"type": "AzureSqlSink",
+								"tableOption": "autoCreate"
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "ContactsSalesTrackingCategories",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "sql_ContactsSalesTrackingCategories",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					},
+					{
+						"name": "CreditNotesLineItemsTracking",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "XeroSource"
+							},
+							"sink": {
+								"type": "AzureSqlSink",
+								"tableOption": "autoCreate"
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "CreditNotesLineItemsTracking",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "sql_CreditNotesLineItemsTracking",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					},
+					{
+						"name": "InvoiceLineItemsTracking",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "XeroSource"
+							},
+							"sink": {
+								"type": "AzureSqlSink",
+								"tableOption": "autoCreate"
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "InvoiceLineItemsTracking",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "sql_InvoiceLineItemsTracking",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					},
+					{
+						"name": "ManualJournalLineItemsTracking",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "XeroSource"
+							},
+							"sink": {
+								"type": "AzureSqlSink",
+								"tableOption": "autoCreate"
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "ManualJournalLineItemsTracking",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "sql_ManualJournalLineItemsTracking",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					},
+					{
+						"name": "OverpaymentLineItemsTracking",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "XeroSource"
+							},
+							"sink": {
+								"type": "AzureSqlSink",
+								"tableOption": "autoCreate"
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "OverpaymentLineItemsTracking",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "sql_OverpaymentLineItemsTracking",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/BankTransactionLineItemsTracking')]",
+				"[concat(variables('factoryId'), '/datasets/sql_BankTransactionLineItemsTracking')]",
+				"[concat(variables('factoryId'), '/datasets/ContactsPurchasesTrackingCategories')]",
+				"[concat(variables('factoryId'), '/datasets/sql_ContactsPurchasesTrackingCategories')]",
+				"[concat(variables('factoryId'), '/datasets/ContactsSalesTrackingCategories')]",
+				"[concat(variables('factoryId'), '/datasets/sql_ContactsSalesTrackingCategories')]",
+				"[concat(variables('factoryId'), '/datasets/CreditNotesLineItemsTracking')]",
+				"[concat(variables('factoryId'), '/datasets/sql_CreditNotesLineItemsTracking')]",
+				"[concat(variables('factoryId'), '/datasets/InvoiceLineItemsTracking')]",
+				"[concat(variables('factoryId'), '/datasets/sql_InvoiceLineItemsTracking')]",
+				"[concat(variables('factoryId'), '/datasets/ManualJournalLineItemsTracking')]",
+				"[concat(variables('factoryId'), '/datasets/sql_ManualJournalLineItemsTracking')]",
+				"[concat(variables('factoryId'), '/datasets/OverpaymentLineItemsTracking')]",
+				"[concat(variables('factoryId'), '/datasets/sql_OverpaymentLineItemsTracking')]"
+			]
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/Accounts')]",
@@ -2845,6 +3444,29 @@
 				"schema": [],
 				"typeProperties": {
 					"tableName": "\"Global\".\"Bank_Transaction_Line_Items\""
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/BovuaFuelApi')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/BankTransactionLineItemsTracking')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "BovuaFuelApi",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "Xero"
+				},
+				"annotations": [],
+				"type": "XeroObject",
+				"schema": [],
+				"typeProperties": {
+					"tableName": "\"Global\".\"Bank_Transaction_Line_Item_Tracking\""
 				}
 			},
 			"dependsOn": [
@@ -3036,6 +3658,52 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/ContactsPurchasesTrackingCategories')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "BovuaFuelApi",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "Xero"
+				},
+				"annotations": [],
+				"type": "XeroObject",
+				"schema": [],
+				"typeProperties": {
+					"tableName": "\"Global\".\"Contacts_Purchases_Tracking_Categories\""
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/BovuaFuelApi')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ContactsSalesTrackingCategories')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "BovuaFuelApi",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "Xero"
+				},
+				"annotations": [],
+				"type": "XeroObject",
+				"schema": [],
+				"typeProperties": {
+					"tableName": "\"Global\".\"Contacts_Sales_Tracking_Categories\""
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/BovuaFuelApi')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/CreditNoteLineItems')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -3075,6 +3743,29 @@
 				"schema": [],
 				"typeProperties": {
 					"tableName": "\"Global\".\"Credit_Notes\""
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/BovuaFuelApi')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/CreditNotesLineItemsTracking')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "BovuaFuelApi",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "Xero"
+				},
+				"annotations": [],
+				"type": "XeroObject",
+				"schema": [],
+				"typeProperties": {
+					"tableName": "\"Global\".\"Credit_Notes_Line_Items_Tracking\""
 				}
 			},
 			"dependsOn": [
@@ -3190,6 +3881,29 @@
 				"schema": [],
 				"typeProperties": {
 					"tableName": "\"Global\".\"Invoice_Line_Items\""
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/BovuaFuelApi')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/InvoiceLineItemsTracking')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "BovuaFuelApi",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "Xero"
+				},
+				"annotations": [],
+				"type": "XeroObject",
+				"schema": [],
+				"typeProperties": {
+					"tableName": "\"Global\".\"Invoices_Line_Items_Tracking\""
 				}
 			},
 			"dependsOn": [
@@ -3358,6 +4072,29 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/ManualJournalLineItemsTracking')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "BovuaFuelApi",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "Xero"
+				},
+				"annotations": [],
+				"type": "XeroObject",
+				"schema": [],
+				"typeProperties": {
+					"tableName": "\"Global\".\"Manual_Journal_Line_Tracking\""
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/BovuaFuelApi')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/ManualJournalLines')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -3443,6 +4180,29 @@
 				"schema": [],
 				"typeProperties": {
 					"tableName": "\"Global\".\"Overpayments_Allocations\""
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/BovuaFuelApi')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/OverpaymentLineItemsTracking')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "BovuaFuelApi",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "Xero"
+				},
+				"annotations": [],
+				"type": "XeroObject",
+				"schema": [],
+				"typeProperties": {
+					"tableName": "\"Global\".\"Overpayment_Line_Items_Tracking\""
 				}
 			},
 			"dependsOn": [
@@ -3844,6 +4604,30 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/sql_BankTransactionLineItemsTracking')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sqlXero",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQL"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "BankTransactionLineItemsTracking"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/sqlXero')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/sql_BankTransactions')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -4036,6 +4820,54 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/sql_ContactsPurchasesTrackingCategories')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sqlXero",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQL"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "ContactsPurchasesTrackingCategories"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/sqlXero')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/sql_ContactsSalesTrackingCategories')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sqlXero",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQL"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "ContactsSalesTrackingCategories"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/sqlXero')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/sql_CreditNoteLineItems')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -4077,6 +4909,30 @@
 				"typeProperties": {
 					"schema": "dbo",
 					"table": "CreditNotes"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/sqlXero')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/sql_CreditNotesLineItemsTracking')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sqlXero",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQL"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "CreditNotesLineItemsTracking"
 				}
 			},
 			"dependsOn": [
@@ -4197,6 +5053,30 @@
 				"typeProperties": {
 					"schema": "dbo",
 					"table": "InvoiceLineItems"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/sqlXero')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/sql_InvoiceLineItemsTracking')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sqlXero",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQL"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "InvoiceLineItemsTracking"
 				}
 			},
 			"dependsOn": [
@@ -4396,6 +5276,30 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/sql_ManualJournalLineItemsTracking')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sqlXero",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQL"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "ManualJournalLineItemsTracking"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/sqlXero')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/sql_ManualJournalLines')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -4461,6 +5365,30 @@
 				"typeProperties": {
 					"schema": "dbo",
 					"table": "OverpaymentAllocations"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/sqlXero')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/sql_OverpaymentLineItemsTracking')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sqlXero",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQL"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "OverpaymentLineItemsTracking"
 				}
 			},
 			"dependsOn": [
@@ -4925,168 +5853,7 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/BankTransactionLineItemsTracking')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "BovuaFuelApi",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "Xero"
-				},
-				"annotations": [],
-				"type": "XeroObject",
-				"schema": [],
-				"typeProperties": {
-					"tableName": "\"Global\".\"Bank_Transaction_Line_Item_Tracking\""
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/BovuaFuelApi')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/ContactsPurchasesTrackingCategories')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "BovuaFuelApi",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "Xero"
-				},
-				"annotations": [],
-				"type": "XeroObject",
-				"schema": [],
-				"typeProperties": {
-					"tableName": "\"Global\".\"Contacts_Purchases_Tracking_Categories\""
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/BovuaFuelApi')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/ContactsSalesTrackingCategories')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "BovuaFuelApi",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "Xero"
-				},
-				"annotations": [],
-				"type": "XeroObject",
-				"schema": [],
-				"typeProperties": {
-					"tableName": "\"Global\".\"Contacts_Sales_Tracking_Categories\""
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/BovuaFuelApi')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/CreditNotesLineItemsTracking')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "BovuaFuelApi",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "Xero"
-				},
-				"annotations": [],
-				"type": "XeroObject",
-				"schema": [],
-				"typeProperties": {
-					"tableName": "\"Global\".\"Credit_Notes_Line_Items_Tracking\""
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/BovuaFuelApi')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/InvoiceLineItemsTracking')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "BovuaFuelApi",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "Xero"
-				},
-				"annotations": [],
-				"type": "XeroObject",
-				"schema": [],
-				"typeProperties": {
-					"tableName": "\"Global\".\"Invoices_Line_Items_Tracking\""
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/BovuaFuelApi')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/ManualJournalLineItemsTracking')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "BovuaFuelApi",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "Xero"
-				},
-				"annotations": [],
-				"type": "XeroObject",
-				"schema": [],
-				"typeProperties": {
-					"tableName": "\"Global\".\"Manual_Journal_Line_Tracking\""
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/BovuaFuelApi')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/OverpaymentLineItemsTracking')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "BovuaFuelApi",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "Xero"
-				},
-				"annotations": [],
-				"type": "XeroObject",
-				"schema": [],
-				"typeProperties": {
-					"tableName": "\"Global\".\"Overpayment_Line_Items_Tracking\""
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/BovuaFuelApi')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/sql_BankTransactionLineItemsTracking')]",
+			"name": "[concat(parameters('factoryName'), '/sql_client_refresh_token_data')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -5102,496 +5869,11 @@
 				"schema": [],
 				"typeProperties": {
 					"schema": "dbo",
-					"table": "BankTransactionLineItemsTracking"
+					"table": "ClientRefrehTokenData"
 				}
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/sqlXero')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/sql_ContactsPurchasesTrackingCategories')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "sqlXero",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "SQL"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": "ContactsPurchasesTrackingCategories"
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/sqlXero')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/sql_ContactsSalesTrackingCategories')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "sqlXero",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "SQL"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": "ContactsSalesTrackingCategories"
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/sqlXero')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/sql_CreditNotesLineItemsTracking')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "sqlXero",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "SQL"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": "CreditNotesLineItemsTracking"
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/sqlXero')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/sql_InvoiceLineItemsTracking')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "sqlXero",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "SQL"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": "InvoiceLineItemsTracking"
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/sqlXero')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/sql_ManualJournalLineItemsTracking')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "sqlXero",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "SQL"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": "ManualJournalLineItemsTracking"
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/sqlXero')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/sql_OverpaymentLineItemsTracking')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "sqlXero",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "SQL"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": "OverpaymentLineItemsTracking"
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/sqlXero')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/plTracking')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "BankTransactionLineItemsTracking",
-						"type": "Copy",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "XeroSource"
-							},
-							"sink": {
-								"type": "AzureSqlSink",
-								"tableOption": "autoCreate"
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"typeConversion": true,
-								"typeConversionSettings": {
-									"allowDataTruncation": true,
-									"treatBooleanAsNumber": false
-								}
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "BankTransactionLineItemsTracking",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "sql_BankTransactionLineItemsTracking",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					},
-					{
-						"name": "ContactsPurchasesTrackingCategories",
-						"type": "Copy",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "XeroSource"
-							},
-							"sink": {
-								"type": "AzureSqlSink",
-								"tableOption": "autoCreate"
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"typeConversion": true,
-								"typeConversionSettings": {
-									"allowDataTruncation": true,
-									"treatBooleanAsNumber": false
-								}
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "ContactsPurchasesTrackingCategories",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "sql_ContactsPurchasesTrackingCategories",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					},
-					{
-						"name": "ContactsSalesTrackingCategories",
-						"type": "Copy",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "XeroSource"
-							},
-							"sink": {
-								"type": "AzureSqlSink",
-								"tableOption": "autoCreate"
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"typeConversion": true,
-								"typeConversionSettings": {
-									"allowDataTruncation": true,
-									"treatBooleanAsNumber": false
-								}
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "ContactsSalesTrackingCategories",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "sql_ContactsSalesTrackingCategories",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					},
-					{
-						"name": "CreditNotesLineItemsTracking",
-						"type": "Copy",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "XeroSource"
-							},
-							"sink": {
-								"type": "AzureSqlSink",
-								"tableOption": "autoCreate"
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"typeConversion": true,
-								"typeConversionSettings": {
-									"allowDataTruncation": true,
-									"treatBooleanAsNumber": false
-								}
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "CreditNotesLineItemsTracking",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "sql_CreditNotesLineItemsTracking",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					},
-					{
-						"name": "InvoiceLineItemsTracking",
-						"type": "Copy",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "XeroSource"
-							},
-							"sink": {
-								"type": "AzureSqlSink",
-								"tableOption": "autoCreate"
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"typeConversion": true,
-								"typeConversionSettings": {
-									"allowDataTruncation": true,
-									"treatBooleanAsNumber": false
-								}
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "InvoiceLineItemsTracking",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "sql_InvoiceLineItemsTracking",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					},
-					{
-						"name": "ManualJournalLineItemsTracking",
-						"type": "Copy",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "XeroSource"
-							},
-							"sink": {
-								"type": "AzureSqlSink",
-								"tableOption": "autoCreate"
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"typeConversion": true,
-								"typeConversionSettings": {
-									"allowDataTruncation": true,
-									"treatBooleanAsNumber": false
-								}
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "ManualJournalLineItemsTracking",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "sql_ManualJournalLineItemsTracking",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					},
-					{
-						"name": "OverpaymentLineItemsTracking",
-						"type": "Copy",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "XeroSource"
-							},
-							"sink": {
-								"type": "AzureSqlSink",
-								"tableOption": "autoCreate"
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"typeConversion": true,
-								"typeConversionSettings": {
-									"allowDataTruncation": true,
-									"treatBooleanAsNumber": false
-								}
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "OverpaymentLineItemsTracking",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "sql_OverpaymentLineItemsTracking",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					}
-				],
-				"annotations": []
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/BankTransactionLineItemsTracking')]",
-				"[concat(variables('factoryId'), '/datasets/sql_BankTransactionLineItemsTracking')]",
-				"[concat(variables('factoryId'), '/datasets/ContactsPurchasesTrackingCategories')]",
-				"[concat(variables('factoryId'), '/datasets/sql_ContactsPurchasesTrackingCategories')]",
-				"[concat(variables('factoryId'), '/datasets/ContactsSalesTrackingCategories')]",
-				"[concat(variables('factoryId'), '/datasets/sql_ContactsSalesTrackingCategories')]",
-				"[concat(variables('factoryId'), '/datasets/CreditNotesLineItemsTracking')]",
-				"[concat(variables('factoryId'), '/datasets/sql_CreditNotesLineItemsTracking')]",
-				"[concat(variables('factoryId'), '/datasets/InvoiceLineItemsTracking')]",
-				"[concat(variables('factoryId'), '/datasets/sql_InvoiceLineItemsTracking')]",
-				"[concat(variables('factoryId'), '/datasets/ManualJournalLineItemsTracking')]",
-				"[concat(variables('factoryId'), '/datasets/sql_ManualJournalLineItemsTracking')]",
-				"[concat(variables('factoryId'), '/datasets/OverpaymentLineItemsTracking')]",
-				"[concat(variables('factoryId'), '/datasets/sql_OverpaymentLineItemsTracking')]"
 			]
 		}
 	]

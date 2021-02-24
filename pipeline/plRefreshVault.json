@@ -340,7 +340,7 @@
 				"typeProperties": {
 					"variableName": "vClient_secret_version",
 					"value": {
-						"value": "@activity('get_xero_token_data').output.firstRow.client_secret_version",
+						"value": "@activity('get_xero_token_data').output.firstRow.secret_key_version",
 						"type": "Expression"
 					}
 				}

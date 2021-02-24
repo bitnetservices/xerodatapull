@@ -2844,6 +2844,43 @@
 						"type": "ExecutePipeline",
 						"dependsOn": [
 							{
+								"activity": "plTracking",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "plRefreshVault",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true,
+							"parameters": {
+								"pOrgName": "Bovua Fuel (Pty) Ltd"
+							}
+						}
+					},
+					{
+						"name": "plMain",
+						"type": "ExecutePipeline",
+						"dependsOn": [],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "plMain",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true,
+							"parameters": {}
+						}
+					},
+					{
+						"name": "plTracking",
+						"type": "ExecutePipeline",
+						"dependsOn": [
+							{
 								"activity": "plJournals",
 								"dependencyConditions": [
 									"Succeeded"
@@ -2859,21 +2896,7 @@
 						"userProperties": [],
 						"typeProperties": {
 							"pipeline": {
-								"referenceName": "plRefreshVault",
-								"type": "PipelineReference"
-							},
-							"waitOnCompletion": true,
-							"parameters": {}
-						}
-					},
-					{
-						"name": "plMain",
-						"type": "ExecutePipeline",
-						"dependsOn": [],
-						"userProperties": [],
-						"typeProperties": {
-							"pipeline": {
-								"referenceName": "plMain",
+								"referenceName": "plTracking",
 								"type": "PipelineReference"
 							},
 							"waitOnCompletion": true,
@@ -2897,7 +2920,40 @@
 				"[concat(variables('factoryId'), '/pipelines/plInvoices')]",
 				"[concat(variables('factoryId'), '/pipelines/plJournals')]",
 				"[concat(variables('factoryId'), '/pipelines/plMisc')]",
-				"[concat(variables('factoryId'), '/pipelines/plMain')]"
+				"[concat(variables('factoryId'), '/pipelines/plMain')]",
+				"[concat(variables('factoryId'), '/pipelines/plTracking')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/scheduledJob')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Started",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "plMaster",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					}
+				],
+				"type": "ScheduleTrigger",
+				"typeProperties": {
+					"recurrence": {
+						"frequency": "Day",
+						"interval": 1,
+						"startTime": "2021-02-24T00:01:00",
+						"endTime": "2021-06-30T05:53:00",
+						"timeZone": "Libya Standard Time",
+						"schedule": {}
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/plMaster')]"
 			]
 		}
 	]

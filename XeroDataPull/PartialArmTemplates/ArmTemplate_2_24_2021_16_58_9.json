@@ -13,379 +13,225 @@
 	},
 	"resources": [
 		{
-			"name": "[concat(parameters('factoryName'), '/sql_Prepayments')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
+			"name": "[concat(parameters('factoryName'), '/plMaster')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
 			"properties": {
-				"linkedServiceName": {
-					"referenceName": "sqlXero",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "SQL"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": "Prepayments"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/sql_Projects')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "sqlXero",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "SQL"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": "Projects"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/sql_PurchaseOrderLineItems')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "sqlXero",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "SQL"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": "PurchaseOrderLineItems"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/sql_PurchaseOrders')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "sqlXero",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "SQL"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": "PurchaseOrders"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/sql_ReceiptLineItems')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "sqlXero",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "SQL"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": "ReceiptLineItems"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/sql_Receipts')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "sqlXero",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "SQL"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": "Receipts"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/sql_RepeatingInvoiceLineItems')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "sqlXero",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "SQL"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": "RepeatingInvoiceLineItems"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/sql_RepeatingInvoices')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "sqlXero",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "SQL"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": "RepeatingInvoices"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/sql_Statements')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "sqlXero",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "SQL"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": "Statements"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/sql_TaxRateTaxComponents')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "sqlXero",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "SQL"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": "TaxRateTaxComponents"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/sql_TaxRates')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "sqlXero",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "SQL"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": "TaxRates"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/sql_Users')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "sqlXero",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "SQL"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": "Users"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/sql_accounts')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "sqlXero",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "SQL"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": "Accounts"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/sql_associations')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "sqlXero",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "SQL"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": "Associations"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/BovuaFuelApi')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "Xero",
-				"typeProperties": {
-					"connectionProperties": {
-						"host": "api.xero.com",
-						"authenticationType": "OAuth_2.0",
-						"consumerKey": {
-							"type": "AzureKeyVaultSecret",
-							"store": {
-								"referenceName": "XeroDataAKV",
-								"type": "LinkedServiceReference"
+				"activities": [
+					{
+						"name": "plAccounts",
+						"type": "ExecutePipeline",
+						"dependsOn": [
+							{
+								"activity": "plMain",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "plAccounts",
+								"type": "PipelineReference"
 							},
-							"secretName": "xero-client-id-bouva-fuel",
-							"secretVersion": ""
-						},
-						"privateKey": {
-							"type": "AzureKeyVaultSecret",
-							"store": {
-								"referenceName": "XeroDataAKV",
-								"type": "LinkedServiceReference"
+							"waitOnCompletion": true
+						}
+					},
+					{
+						"name": "plBank",
+						"type": "ExecutePipeline",
+						"dependsOn": [
+							{
+								"activity": "plAccounts",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "plBank",
+								"type": "PipelineReference"
 							},
-							"secretName": "xero-secret-bouva-fuel",
-							"secretVersion": ""
-						},
-						"useEncryptedEndpoints": true,
-						"tenantId": "a9aa610c-5c24-40e4-8653-76e1f732c593",
-						"refreshToken": {
-							"type": "AzureKeyVaultSecret",
-							"store": {
-								"referenceName": "XeroDataAKV",
-								"type": "LinkedServiceReference"
+							"waitOnCompletion": true
+						}
+					},
+					{
+						"name": "plContacts",
+						"type": "ExecutePipeline",
+						"dependsOn": [
+							{
+								"activity": "plAccounts",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "plContacts",
+								"type": "PipelineReference"
 							},
-							"secretName": "xero-refresh-token-bouva-fuel",
-							"secretVersion": ""
+							"waitOnCompletion": true
+						}
+					},
+					{
+						"name": "plEmployees",
+						"type": "ExecutePipeline",
+						"dependsOn": [
+							{
+								"activity": "plBank",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "plEmployees",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true
+						}
+					},
+					{
+						"name": "plInvoices",
+						"type": "ExecutePipeline",
+						"dependsOn": [
+							{
+								"activity": "plContacts",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "plInvoices",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true
+						}
+					},
+					{
+						"name": "plJournals",
+						"type": "ExecutePipeline",
+						"dependsOn": [
+							{
+								"activity": "plEmployees",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "plJournals",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true
+						}
+					},
+					{
+						"name": "plMisc",
+						"type": "ExecutePipeline",
+						"dependsOn": [
+							{
+								"activity": "plInvoices",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "plMisc",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true
+						}
+					},
+					{
+						"name": "plRefreshVault",
+						"type": "ExecutePipeline",
+						"dependsOn": [
+							{
+								"activity": "plTracking",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "plRefreshVault",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true,
+							"parameters": {
+								"pOrgName": "Bovua Fuel (Pty) Ltd"
+							}
+						}
+					},
+					{
+						"name": "plMain",
+						"type": "ExecutePipeline",
+						"dependsOn": [],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "plMain",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true
+						}
+					},
+					{
+						"name": "plTracking",
+						"type": "ExecutePipeline",
+						"dependsOn": [
+							{
+								"activity": "plJournals",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							},
+							{
+								"activity": "plMisc",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "plTracking",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true
 						}
 					}
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/sql_client_refresh_token_data')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "sqlXero",
-					"type": "LinkedServiceReference"
+				],
+				"variables": {
+					"org_name": {
+						"type": "String",
+						"defaultValue": "Bovua Fuel (Pty) Ltd"
+					}
 				},
-				"folder": {
-					"name": "SQL"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": "ClientRefrehTokenData"
-				}
+				"annotations": []
 			},
-			"dependsOn": []
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/plRefreshVault')]"
+			]
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/plRefreshVault')]",
@@ -415,7 +261,6 @@
 						"typeProperties": {
 							"url": "https://xerodatakeyvault.vault.azure.net/secrets/xero-refresh-token-bouva-fuel?api-version=7.0",
 							"method": "DELETE",
-							"headers": {},
 							"body": {
 								"value": "@variables('vNew_refresh_token')",
 								"type": "Expression"
@@ -503,7 +348,6 @@
 								"type": "Expression"
 							},
 							"method": "GET",
-							"headers": {},
 							"authentication": {
 								"type": "MSI",
 								"resource": "https://vault.azure.net"
@@ -535,7 +379,6 @@
 								"type": "Expression"
 							},
 							"method": "GET",
-							"headers": {},
 							"authentication": {
 								"type": "MSI",
 								"resource": "https://vault.azure.net"
@@ -607,7 +450,6 @@
 								"type": "Expression"
 							},
 							"method": "GET",
-							"headers": {},
 							"authentication": {
 								"type": "MSI",
 								"resource": "https://vault.azure.net"
@@ -696,8 +538,7 @@
 							},
 							"dataset": {
 								"referenceName": "sql_client_refresh_token_data",
-								"type": "DatasetReference",
-								"parameters": {}
+								"type": "DatasetReference"
 							}
 						}
 					},
@@ -783,7 +624,6 @@
 						"typeProperties": {
 							"url": "https://xerodatakeyvault.vault.azure.net/secrets/xero-refresh-token-bouva-fuel?api-version=7.0",
 							"method": "PUT",
-							"headers": {},
 							"body": {
 								"value": "{\n  \"value\": \"@{variables('vNew_refresh_token')}\"\n}",
 								"type": "Expression"
@@ -816,7 +656,6 @@
 						"typeProperties": {
 							"url": "https://xerodatakeyvault.vault.azure.net/deletedsecrets/xero-refresh-token-bouva-fuel?api-version=7.0",
 							"method": "DELETE",
-							"headers": {},
 							"body": {
 								"value": "@variables('vNew_refresh_token')",
 								"type": "Expression"
@@ -905,77 +744,36 @@
 				},
 				"annotations": []
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/sql_client_refresh_token_data')]"
-			]
+			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/Accounts')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
+			"name": "[concat(parameters('factoryName'), '/scheduledJob')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
 			"apiVersion": "2018-06-01",
 			"properties": {
-				"linkedServiceName": {
-					"referenceName": "BovuaFuelApi",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "Xero"
-				},
 				"annotations": [],
-				"type": "XeroObject",
-				"schema": [],
+				"runtimeState": "Started",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "plMaster",
+							"type": "PipelineReference"
+						}
+					}
+				],
+				"type": "ScheduleTrigger",
 				"typeProperties": {
-					"tableName": "\"Global\".\"Accounts\""
+					"recurrence": {
+						"frequency": "Day",
+						"interval": 1,
+						"startTime": "2021-02-24T00:01:00",
+						"endTime": "2021-06-30T05:53:00",
+						"timeZone": "Libya Standard Time"
+					}
 				}
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/BovuaFuelApi')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/AssetTypes')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "BovuaFuelApi",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "Xero"
-				},
-				"annotations": [],
-				"type": "XeroObject",
-				"schema": [],
-				"typeProperties": {
-					"tableName": "\"Global\".\"AssetTypes\""
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/BovuaFuelApi')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Associations')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "BovuaFuelApi",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "Xero"
-				},
-				"annotations": [],
-				"type": "XeroObject",
-				"schema": [],
-				"typeProperties": {
-					"tableName": "\"Global\".\"Associations\""
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/BovuaFuelApi')]"
+				"[concat(variables('factoryId'), '/pipelines/plMaster')]"
 			]
 		}
 	]

@@ -469,7 +469,7 @@
 						},
 						"token_version": {
 							"value": {
-								"value": "replace(@activity('Set Refresh Token').output.id, 'https://xerodatakeyvault.vault.azure.net/secrets/xero-refresh-token-bouva-fuel/','')",
+								"value": "@replace(activity('Set Refresh Token').output.id, 'https://xerodatakeyvault.vault.azure.net/secrets/xero-refresh-token-bouva-fuel/','')",
 								"type": "Expression"
 							},
 							"type": "String"

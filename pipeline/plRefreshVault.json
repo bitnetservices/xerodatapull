@@ -106,7 +106,10 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"url": "https://xerodatakeyvault.vault.azure.net/secrets/xero-client-id-bouva-fuel/92593a4487404f039c81f43ed71e9fa3?api-version=7.0",
+					"url": {
+						"value": "@https://xerodatakeyvault.vault.azure.net/secrets/xero-client-id-bouva-fuel/variables('vClient_id_version')?api-version=7.0",
+						"type": "Expression"
+					},
 					"method": "GET",
 					"authentication": {
 						"type": "MSI",
@@ -134,7 +137,10 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"url": "https://xerodatakeyvault.vault.azure.net/secrets/xero-secret-bouva-fuel/d4de9cc59dfe41c3a5a455f2daccfd25?api-version=7.0",
+					"url": {
+						"value": "@https://xerodatakeyvault.vault.azure.net/secrets/xero-secret-bouva-fuel/variables('vClient_secret_version')?api-version=7.0",
+						"type": "Expression"
+					},
 					"method": "GET",
 					"authentication": {
 						"type": "MSI",
@@ -202,7 +208,10 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"url": "https://xerodatakeyvault.vault.azure.net/secrets/xero-refresh-token-bouva-fuel/1e38001e6e664f1baba37cac82c977ad?api-version=7.0",
+					"url": {
+						"value": "@https://xerodatakeyvault.vault.azure.net/secrets/xero-refresh-token-bouva-fuel/variables('vRefresh_token_version')?api-version=7.0",
+						"type": "Expression"
+					},
 					"method": "GET",
 					"authentication": {
 						"type": "MSI",
@@ -309,9 +318,9 @@
 				],
 				"userProperties": [],
 				"typeProperties": {
-					"variableName": "vClient_id",
+					"variableName": "vClient_id_version",
 					"value": {
-						"value": "@activity('Read Client Id').output.value",
+						"value": "@activity('get_xero_token_data').output.firstRow.client_id_version",
 						"type": "Expression"
 					}
 				}
@@ -329,9 +338,9 @@
 				],
 				"userProperties": [],
 				"typeProperties": {
-					"variableName": "vClient_id",
+					"variableName": "vClient_secret_version",
 					"value": {
-						"value": "@activity('Read Client Id').output.value",
+						"value": "@activity('get_xero_token_data').output.firstRow.client_secret_version",
 						"type": "Expression"
 					}
 				}
@@ -351,7 +360,7 @@
 				"typeProperties": {
 					"variableName": "vClient_id",
 					"value": {
-						"value": "@activity('Read Client Id').output.value",
+						"value": "@activity('get_xero_token_data').output.firstRow.token_version",
 						"type": "Expression"
 					}
 				}
@@ -385,7 +394,7 @@
 			"vClient_secret_version": {
 				"type": "String"
 			},
-			"vClient_refresh_token_version": {
+			"vRefresh_token_version": {
 				"type": "String"
 			}
 		},

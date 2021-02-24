@@ -388,7 +388,7 @@
 					"url": "https://xerodatakeyvault.vault.azure.net/secrets/xero-refresh-token-bouva-fuel?api-version=7.0",
 					"method": "PUT",
 					"body": {
-						"value": "{\n  \"value\": \"@variables('vNew_refresh_token')\"\n}",
+						"value": "{\n  \"value\": \"@{variables('vNew_refresh_token')}\"\n}",
 						"type": "Expression"
 					},
 					"authentication": {

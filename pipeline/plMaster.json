@@ -159,7 +159,10 @@
 						"referenceName": "plRefreshVault",
 						"type": "PipelineReference"
 					},
-					"waitOnCompletion": true
+					"waitOnCompletion": true,
+					"parameters": {
+						"pOrgName": "Bovua Fuel (Pty) Ltd"
+					}
 				}
 			},
 			{

@@ -124,58 +124,6 @@
 						]
 					},
 					{
-						"name": "Associations",
-						"type": "Copy",
-						"dependsOn": [
-							{
-								"activity": "Accounts",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "XeroSource"
-							},
-							"sink": {
-								"type": "AzureSqlSink",
-								"tableOption": "autoCreate"
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"typeConversion": true,
-								"typeConversionSettings": {
-									"allowDataTruncation": true,
-									"treatBooleanAsNumber": false
-								}
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "Associations",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "sql_associations",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					},
-					{
 						"name": "CreditNoteLineItems",
 						"type": "Copy",
 						"dependsOn": [
@@ -298,8 +246,6 @@
 				"[concat(variables('factoryId'), '/datasets/sql_accounts')]",
 				"[concat(variables('factoryId'), '/datasets/AssetTypes')]",
 				"[concat(variables('factoryId'), '/datasets/sql_AssetTypes')]",
-				"[concat(variables('factoryId'), '/datasets/Associations')]",
-				"[concat(variables('factoryId'), '/datasets/sql_associations')]",
 				"[concat(variables('factoryId'), '/datasets/CreditNoteLineItems')]",
 				"[concat(variables('factoryId'), '/datasets/sql_CreditNoteLineItems')]",
 				"[concat(variables('factoryId'), '/datasets/CreditNotes')]",
@@ -5804,6 +5750,30 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/sql_client_refresh_token_data')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "sqlXero",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "SQL"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "ClientRefrehTokenData"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/sqlXero')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/BovuaFuelApi')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
@@ -5877,30 +5847,6 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/sql_client_refresh_token_data')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "sqlXero",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "SQL"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": "ClientRefrehTokenData"
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/sqlXero')]"
-			]
-		},
-		{
 			"name": "[concat(parameters('factoryName'), '/scheduledJob')]",
 			"type": "Microsoft.DataFactory/factories/triggers",
 			"apiVersion": "2018-06-01",
@@ -5923,8 +5869,7 @@
 						"interval": 1,
 						"startTime": "2021-02-24T00:01:00",
 						"endTime": "2021-06-30T05:53:00",
-						"timeZone": "Libya Standard Time",
-						"schedule": {}
+						"timeZone": "Libya Standard Time"
 					}
 				}
 			},
